@@ -10,16 +10,12 @@
 export default {
   computed: {
     content() {
-      if (window.$t) {
-        return $t('您可能迷路啦 ~ 换个地址试试吧');
-      }
       return '您可能迷路啦 ~ 换个地址试试吧';
     }
   }
 };
 </script>
 <style lang="scss" scoped>
-@import '../../assets/styles/mixin';
 .blank_screen {
   position: absolute;
   left: 50%;
@@ -29,12 +25,14 @@ export default {
     text-align: center;
     img {
       pointer-events: none;
-      @include wh(4.28rem, 4.94rem);
+      //@include wh(4.28rem, 4.94rem);
+      width: 4.28rem;
+      height: 4.94rem;
     }
     .first-line {
       margin-top: 0.4rem;
       margin-bottom: 0.24rem;
-      font-size: $fontSize3;
+      font-size: .36rem;
     }
   }
 }

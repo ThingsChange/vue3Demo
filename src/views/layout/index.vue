@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { getList } from '@/common/commonConst'
+// import { getList } from '@/common/commonConst'
 import { routeConfig } from '@/config/menuRouter'
 import { corsAPI } from '@/api/index'
 export default {
