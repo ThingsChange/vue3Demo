@@ -1,39 +1,46 @@
-import App from '../Root';
-
-const LayOut = () => import(/* webpackChunkName: "QuickOrder" */ '../views/layout');
-const Animation = () => import(/* webpackChunkName: "Animation" */ '../views/cssStudy/Animation');
-// 软文分享朋友圈
+const LayOut = () => import(/* webpackChunkName: "Layout" */ '@v/layout');
+const Animation = () => import(/* webpackChunkName: "Animation" */ '@v/cssStudy/animation');
+const Communicate = () => import(/* webpackChunkName: "Communicate" */ '@v/communicate/index');
+const VueNext = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/reactive');
 // 404
-const NotFound = () => import(/* webpackChunkName: "NotFound" */ '../components/ErrorPage/NotFound');
+const NotFound = () => import(/* webpackChunkName: "NotFound" */ '@c/ErrorPage/NotFound');
 // 快应用落地页
-const QuickAppLanding = () => import(/* webpackChunkName: "QuickApp" */ '../pages/quickappLanding/index');
+const Login = () => import(/* webpackChunkName: "Login" */ '@v/login/index');
 
 const routes = [{
-  path: '/',
-  redirect: '/qy'
+    path: '/',
+    redirect: '/qy'
 },
-{
-  path: '/newm/quickapp/vivo',
-  component: QuickAppLanding,
-  name: 'ViVoQuickAppLanding'
-},
-{
-  path: '/qy',
-  component: App,
-  children: [
-    // 彩蛋猫页面
     {
-      path: '/cssStudy',
-      name: 'Animation',
-      component: Animation
+        path: '/qy/login',
+        component: Login,
+        name: 'Login'
     },
-  ],
-}
+    {
+        path: '/qy',
+        component: LayOut,
+        children: [
+            {
+                path: 'cssStudy',
+                component: Animation
+            },
+            {
+                path: 'communicate',
+                name: 'Communicate',
+                component: Communicate
+            },
+            {
+                path: 'vueNext',
+                name: 'vueNext',
+                component: VueNext
+            },
+        ],
+    },
 ];
 
 routes.push({
-  path: '/*',
-  component: NotFound
+    path: '/*',
+    component: NotFound
 });
 
 export default routes;

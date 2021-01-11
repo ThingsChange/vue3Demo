@@ -2,12 +2,16 @@
   <div class="bc">
     <div class="moon"></div>
   </div>
-
+  <div>
+    CSS
+  </div>
 </template>
 
-<script>
+<script lang="ts">
+
 export default {
-  name: 'animation'
+  name: 'animation',
+
 }
 </script>
 

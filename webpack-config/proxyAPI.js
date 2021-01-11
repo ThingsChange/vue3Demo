@@ -1,4 +1,5 @@
- const createProxyAPI = (isPro)=>{
+const path = require('path')
+const createProxyAPI = (isPro)=>{
     let devProxy = {
         /*'/BeMoralOfficial': {
             target: 'http://!****.****.****.****:8001',  //目标接口域名
@@ -50,12 +51,18 @@
         },
         compress: true,
         host: '0.0.0.0',
+        contentBase: path.join(__dirname, 'dist'),
         disableHostCheck: true,
         overlay: {// 让浏览器 overlay 同时显示警告和错误
             warnings: true,
             errors: true,
         },
-        historyApiFallback: true,
+        historyApiFallback: {
+            rewrites: [
+                // { from: /\/qy/, to: '/index.html' }
+                // { from: /\/achievement/, to: '/index.html' }
+            ]
+        },
         proxy: devProxy,
     }
 }
