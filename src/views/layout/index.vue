@@ -1,11 +1,13 @@
 <template>
   <el-container class="layout">
     <el-aside width="200px">
-      <menu></menu>
+      <a-ne></a-ne>
     </el-aside>
     <el-container class="layout-right">
       <el-header>Header</el-header>
-      <el-main>Main</el-main>
+      <el-main>
+        <router-view/>
+      </el-main>
       <el-footer>Footer</el-footer>
     </el-container>
   </el-container>
@@ -135,7 +137,8 @@ export default defineComponent({
       active: 0,
     }
   },
-  components:{menu},
+  // components:{"me-nu": menu},
+  components: { 'a-ne':menu },
   computed: {
     menuItemsLen(): number {
       return this.menuItems.length
@@ -175,10 +178,12 @@ export default defineComponent({
     }
   }
   .el-aside{
+    height: 100vh;
+    overflow: hidden;
     background-color: #d3dce6;
     color: #333;
     text-align: center;
-    line-height: 200px;
+    //line-height: 200px;
   }
 }
 .layer-head {

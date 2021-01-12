@@ -1,6 +1,7 @@
 declare module '*.vue' {
   import type { DefineComponent } from 'vue'
   const component: DefineComponent<{}, {}, any>
+    const $abcd:any
   export default component
 }
 
@@ -22,5 +23,10 @@ declare module "vue/types/vue" {
         $http: any;
         $Message: any;
         $Modal: any;
+        $abc:any
     }
+}
+
+declare global {
+    const $abc: any
 }

@@ -46,6 +46,13 @@ module.exports = {
         imagesRule.exclude.add(resolve("src/icons"));
         config.module.rule("images").test(/\.(png|jpe?g|gif|svg)(\?.*)?$/);
 
+/*        const tsxRule=config.module.rule('tsx');
+        console.log('这里是 config.module.rule("") 的结果-------------', config.module.rule('ts'))
+        console.log('这里是 tsxRule 的结果-------------', tsxRule)
+        tsxRule.exclude.add(/node_modules/);
+        tsxRule.test( /\.tsx?$/)
+            .use("ts-loader")
+            .loader("ts-loader").options({ appendTsxSuffixTo: [/\.vue$/] })*/
     },
     configureWebpack: () => {},
     // css相关配置
