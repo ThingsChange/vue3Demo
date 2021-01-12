@@ -1,9 +1,7 @@
 <template>
   <el-row class="tac">
-    <el-col :span="12">
-      <h5>自定义颜色</h5>
       <el-menu
-          @click="aaa"
+          @select="selectMenu"
           default-active="2"
           class="el-menu-vertical-demo"
           @open="handleOpen"
@@ -12,25 +10,26 @@
           text-color="#fff"
           active-text-color="#ffd04b"
       >
-        <el-submenu index="1">
+        <el-submenu v-for="(item, index) in routeConfig" :index="item.id" :key="index">
+          <template v-slot:title>{{ item.text }}</template>
+          <el-menu-item v-for="(secondItem, index) in item.child" :index="secondItem.id" :key="index">{{ secondItem.text }}</el-menu-item>
+        </el-submenu>
+
+<!--        <el-submenu index="1">
           <template v-slot:title>
             <i class="el-icon-location"></i>
             <span>导航一</span>
           </template>
           <el-menu-item-group>
             <template v-slot:title>分组一</template>
-            <el-menu-item index="1-1">选项1</el-menu-item>
+            <el-menu-item index="1-1" index-path="/qy/cssStudy">reactive</el-menu-item>
             <el-menu-item index="1-2">选项2</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group title="分组2">
             <el-menu-item index="1-3">选项3</el-menu-item>
           </el-menu-item-group>
-          <el-submenu index="1-4">
-            <template v-slot:title>选项4</template>
-            <el-menu-item index="1-4-1">选项1</el-menu-item>
-          </el-submenu>
-        </el-submenu>
-        <el-menu-item index="2">
+        </el-submenu>-->
+<!--        <el-menu-item index="2">
           <i class="el-icon-menu"></i>
           <template v-slot:title>
             <span>导航二</span>
@@ -47,51 +46,78 @@
           <template v-slot:title>
             <span>导航四</span>
           </template>
-        </el-menu-item>
+        </el-menu-item>-->
       </el-menu>
-    </el-col>
   </el-row>
 </template>
 
-<script lang="ts">
+<script>
 import {ref, getCurrentInstance} from 'vue'
-import {useRouter,useRoute} from "vue-router";
+import {useRouter, useRoute} from "vue-router";
+import {routeConfig} from "@/views/layout/menuRouter";
+
 export default {
-  name:'menu',
-  data(){
+  name: 'menu',
+  data() {
     return {
-          hehe:[1,2,3]
+      hehe: [1, 2, 3],
+      // routeConfig
     }
   },
-  methods:{
-    aaa(){
-      console.log('这里是 this methods 的结果-------------', this)
+  methods: {
+    selectMenu(data) {
+      let firstMenum = data.slice(0, data.indexOf('-'))
+      let toUrl = ''
+      console.log(1234)
+      routeConfig.filter(v => {
+        if (v.id === firstMenum) {
+          v.child.filter(x => {
+            if (x.id === data) {
+              toUrl = x.path
+            }
+          })
+        }
+      })
+      this.$router.push(toUrl)
     }
   },
   created() {
     console.log('这里是 this created 的结果-------------', this)
   },
-  setup(props:any,context:any) {
+  setup(props, context) {
     let defaultOpeneds = ref(['1', '1-4'])
-    let root=getCurrentInstance();
-    let router= useRouter();
-    let route= useRoute();
+    let routeConfig = ref(routeConfig)
+    let root = getCurrentInstance();
+    let router = useRouter();
+    let route = useRoute();
     console.log('这里是 this 的结果-------------', this)
     // console.log('这里是 VueRouter 的结果-------------', VueRouter)
-    console.log('这里是 root 的结果-------------', root,router,route)
-    function handleOpen(key:any, keyPath:any) {
-      console.log('这里是 props,context 的结果-------------', props,context)
-      console.log(key, keyPath)
-    }
-    function handleClose(key:any, keyPath:any) {
+    console.log('这里是 root 的结果-------------', root, router, route)
+
+    function handleOpen(key, keyPath) {
+      console.log('这里是 props,context 的结果-------------', props, context)
       console.log(key, keyPath)
     }
 
-    function selectMenu(data:any){
-      console.log('这里是 props,context 的结果-------------', props,context)
+    function handleClose(key, keyPath) {
+      console.log(key, keyPath)
     }
 
-    return { defaultOpeneds, handleOpen, handleClose }
+    function selectMenu(data) {
+      console.log('这里是 props,context 的结果-------------', props, context)
+    }
+
+    console.log('这里是 routeConfig 的结果-------------', routeConfig)
+
+    return {defaultOpeneds, handleOpen, handleClose, routeConfig}
   }
 }
 </script>
+<style type="scss" lang="scss">
+.el-submenu__title{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+</style>
