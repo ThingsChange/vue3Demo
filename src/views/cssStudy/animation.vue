@@ -3,7 +3,7 @@
     <div class="moon"></div>
   </div>
   <div>
-    CSS
+    {{$t('cssStudy.style')}}
   </div>
 </template>
 

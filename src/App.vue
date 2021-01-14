@@ -34,6 +34,7 @@
 import { Options, Vue } from 'vue-class-component';
 import HelloWorld from './components/HelloWorld.vue';
 import {reactive,toRefs} from 'vue'
+import   '@a/yanhua.js'
 
 @Options({
   components: {

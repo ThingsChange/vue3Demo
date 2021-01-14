@@ -1,7 +1,7 @@
 <template>
   <el-container class="layout">
     <el-aside width="200px">
-      <a-ne></a-ne>
+      <me-nu></me-nu>
     </el-aside>
     <el-container class="layout-right">
       <el-header>Header</el-header>
@@ -11,78 +11,6 @@
       <el-footer>Footer</el-footer>
     </el-container>
   </el-container>
-<!--  <div class="layer-head">
-
-  </div>
-  <div class="layer-content">
-    <div class="menu-left">
-      <div class="accordion">
-        <div v-for="(vo,inx) in menuItems" :key="inx">
-          &lt;!&ndash; 手风琴标题 &ndash;&gt;
-          <div class="item" @click="changeItem(vo,inx)">
-            {{ vo.title }}
-          </div>
-          &lt;!&ndash; 手风琴内容 &ndash;&gt;
-          <div class="content" v-show="active==inx&&vo.show">
-            {{ vo.content }}
-            &lt;!&ndash; 可以自定义内容结构 &ndash;&gt;
-            <div v-if="inx===0">
-              我是自定义内容1
-            </div>
-            <div v-if="inx===1">
-              我是自定义内容2
-            </div>
-            <div v-if="inx===2">
-              我是自定义内容3
-            </div>
-          </div>
-        </div>
-      </div>
-      <p>
-        <router-link to="/qy/cssStudy">/qy/cssStudy</router-link>
-        <br/>
-      </p>
-      <p>
-        <router-link to="/qy/communicate">/qy/communicate</router-link>
-        <br/>
-      </p>
-      <p>
-        <router-link to="/qy/vueNext">/qy/vueNext</router-link>
-        <br/>
-      </p>
-    </div>
-    <div class="layer-content-right">
-      <router-view></router-view>
-    </div>
-  </div>
-  <footer class="layer-foot">这算个什么鬼</footer>-->
-  <!--  <div class="layout" :class="{ 'layout-hide-text': expandLeft }">
-      <Row type="flex" class="row-height">
-        <Col :span="spanLeft" class="layout-menu-left">
-          <div class="layout-logo-left">
-            <img class="programImg" src="@/assets/images/zhongzhi.jpg" alt="" />
-            <p>各种DEMO</p>
-          </div>
-          <MenuSelf :menu-show="menuIsShow" />
-        </Col>
-        <Col :span="spanRight" class="right-wrap">
-          <div class="layout-header">
-            <Button type="text" @click="toggleClick" span="2">
-              <Icon type="navicon" size="32"></Icon>
-            </Button>
-            <div class="layout-quit" @click="quitLogin">
-              退出登录吧
-            </div>
-          </div>
-          <div class="content-wrap">
-            <router-view> </router-view>
-          </div>
-          <div class="layout-copy">
-            2018 &copy;QY-NeedStudyHard
-          </div>
-        </Col>
-      </Row>
-    </div>-->
 </template>
 
 
@@ -137,8 +65,8 @@ export default defineComponent({
       active: 0,
     }
   },
-  // components:{"me-nu": menu},
-  components: { 'a-ne':menu },
+  components:{"me-nu": menu},
+  // components: { menu },
   computed: {
     menuItemsLen(): number {
       return this.menuItems.length

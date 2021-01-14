@@ -32,7 +32,7 @@ export const routeConfig = [
   },
   {
     id: '3',
-    path: '/qy/cssStudy',
+    path: '/qy',
     text: 'css学习',
     child: [{ id: '3-1', path: '/qy/cssStudy', text: '动画' }]
   }

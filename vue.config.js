@@ -46,6 +46,16 @@ module.exports = {
         imagesRule.exclude.add(resolve("src/icons"));
         config.module.rule("images").test(/\.(png|jpe?g|gif|svg)(\?.*)?$/);
 
+/*        const jsRule = config.module.rule('js')
+        jsRule.exclude.add(/node_modules/);
+        jsRule.include.add(resolve('src/views/layout/menuRouter'))
+        jsRule.test(/\.js$/)
+            .use('./webpack-config/loader-self')
+            .loader('./webpack-config/loader-self')
+            .options({
+                abc:'123'
+            })*/
+
 /*        const tsxRule=config.module.rule('tsx');
         console.log('这里是 config.module.rule("") 的结果-------------', config.module.rule('ts'))
         console.log('这里是 tsxRule 的结果-------------', tsxRule)
