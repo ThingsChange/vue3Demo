@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import {ref, getCurrentInstance} from 'vue'
+import {ref, getCurrentInstance, inject} from 'vue'
 import {useRouter, useRoute} from "vue-router";
 import {routeConfig as routeList } from "@/views/layout/menuRouter";
 
@@ -48,19 +48,21 @@ export default {
     }
   },
   created() {
-    console.log('这里是 123 的结果-------------', this.$t('cssStudy.style'))
-    console.log('这里是 this created 的结果-------------', this)
+    // console.log('这里是 123 的结果-------------', this.$t('cssStudy.style'))
+    // console.log('这里是 this created 的结果-------------', this)
   },
   setup(props, context) {
+      const $ss =inject('$ss')
+      // console.log('这里是 $ss 的结果-------------', $ss)
     let defaultOpeneds = ref(['1', '1-4'])
-    console.log('这里是 props,context 的结果-------------', props, context)
+    // console.log('这里是 props,context 的结果-------------', props, context)
     //临时性死区你敢信他不报错？
     // let routeConfig = ref(routeConfig)
     let routeConfig = ref(routeList)
     let root = getCurrentInstance();
     let router = useRouter();
     let route = useRoute();
-    console.log('这里是 root 的结果-------------', root, router, route)
+    // console.log('这里是 root 的结果-------------', root, router, route)
 
     function handleOpen(key, keyPath) {
       console.log('这里是 props,context 的结果-------------', props, context)
