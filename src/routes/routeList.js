@@ -5,17 +5,12 @@ const VueNext = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/r
 // 404
 const NotFound = () => import(/* webpackChunkName: "NotFound" */ '@c/ErrorPage/NotFound');
 // 快应用落地页
-const Login = () => import(/* webpackChunkName: "Login" */ '@v/login/index');
+// const Login = () => import(/* webpackChunkName: "Login" */ '@v/login/index');
 
 const routes = [{
     path: '/',
     redirect: '/qy'
 },
-    {
-        path: '/qy/login',
-        component: Login,
-        name: 'Login'
-    },
     {
         path: '/qy',
         component: LayOut,

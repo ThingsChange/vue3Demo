@@ -16,7 +16,7 @@ export default {
 
 <style scoped>
   .bc{
-    background: aqua;
+    background: #1b1f15;
     height: 16rem;
     padding: 1rem;
   }

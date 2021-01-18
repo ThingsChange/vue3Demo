@@ -13,7 +13,7 @@ module.exports = {
     outputDir: 'dist',
     // eslint-loader 是否在保存的时候检查
     lintOnSave: false,
-    runtimeCompiler: true, // 是否使用包含运行时编译器的 Vue 构建版本
+    runtimeCompiler: !IS_PROD, // 是否使用包含运行时编译器的 Vue 构建版本
     productionSourceMap: !IS_PROD, // 生产环境的 source map
     // assetsDir:'qy',
     // webpack配置
@@ -68,7 +68,7 @@ module.exports = {
     // css相关配置
     css: {
         // 是否使用css分离插件 ExtractTextPlugin
-        extract: IS_PROD,
+        extract: false,
         // 开启 CSS source maps?
         sourceMap: !IS_PROD,
         // css预设器配置项
@@ -87,5 +87,5 @@ module.exports = {
     // 第三方插件配置
     pluginOptions: {
         // ...
-    }
+    },
 }

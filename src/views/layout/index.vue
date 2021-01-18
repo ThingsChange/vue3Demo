@@ -1,7 +1,7 @@
 <template>
   <el-container class="layout">
-    <el-aside width="200px">
-      <el-avatar class="avatar">
+    <el-aside width="200px"  class="layout-left">
+      <el-avatar class="avatar-nb">
         <img src="../../assets/images/老子不干了.jpg" alt="">
       </el-avatar>
       <me-nu></me-nu>
@@ -9,6 +9,7 @@
     <el-container class="layout-right">
       <el-header>
         <button class='liti-button' @click="changeTheme">改变主题</button>
+        <button class='liti-button' @click="addRouteAsync">增加路由</button>
       </el-header>
       <el-main>
         <router-view/>
@@ -23,7 +24,9 @@
 import  menu from './menu.vue'
 import {defineComponent, PropType,getCurrentInstance ,inject} from 'vue'
 import {NavigationGuardNext, RouteLocationNormalized} from "vue-router";
-import {SetupContext} from "@vue/runtime-core";
+import {ComponentInternalInstance, SetupContext} from "@vue/runtime-core";
+// import  Login from '@/views/login/index.vue'
+const   _import  = require ('@/common/_import.js')
 
 //class 风格
 interface ItemObj {
@@ -86,6 +89,15 @@ export default defineComponent({
       // @ts-ignore
        this.$ls.set('data-theme',dataTheme)
       window.document.documentElement.setAttribute('data-theme', dataTheme)
+    },
+    addRouteAsync(){
+     let routeA= {
+        path: '/login',
+          component: _import('login/index.vue'),
+          name: 'Logina'
+      }
+      this.$router.addRoute(routeA)
+      this.$router.push({name:'Logina'})
     }
   },
   setup(props,context){
@@ -100,9 +112,10 @@ export default defineComponent({
   },
   created() {
     let  {ctx}:any = getCurrentInstance();
-    console.log('这里是 ctx 的结果-------------', ctx)
-    let dataTheme= ctx.$ls.get('data-theme') || 'default';
-      window.document.documentElement.setAttribute('data-theme', dataTheme)
+    let root:ComponentInternalInstance= getCurrentInstance();
+    console.log('这里是 ctx 的结果-------------', ctx,root.ctx,root,this)
+    // let dataTheme= ctx.$ls.get('data-theme') || 'default';
+    //   window.document.documentElement.setAttribute('data-theme', dataTheme)
   },
   mounted() {
     // let root = getCurrentInstance();
@@ -117,6 +130,12 @@ export default defineComponent({
 .layout{
   display: flex;
   height: 100vh;
+  .layout-left{
+    background-color: rgb(84, 92, 100) !important;
+    & /deep/ .el-menu{
+      border-right: none;
+    }
+  }
   .layout-right{
     display: flex;
     flex-flow: column;
@@ -131,6 +150,11 @@ export default defineComponent({
     .el-main{
       flex: 1;
     }
+    .el-header{
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
   }
   .el-aside{
     height: 100vh;
@@ -140,9 +164,9 @@ export default defineComponent({
     text-align: center;
     //line-height: 200px;
   }
-  avatar{
-    width: 4rem;
-    height: 4rem;
+  .avatar-nb{
+    width: 6rem;
+    height: 6rem;
   }
 }
 .layer-head {
@@ -184,6 +208,7 @@ export default defineComponent({
   cursor: pointer;
   background: linear-gradient(#3de5fb, #26acbd);
   text-shadow: 0 1px 1px grey;
+  height: 2rem;
   /*位置的三个参数
           1  X轴方向扩散，负值在左，正值在右
           2 Y轴方向扩散，正值向下，负值向上

@@ -1,29 +1,51 @@
 // import './routes/class-component-hooks';
-import { createApp } from 'vue'
-import  Element3 from 'element3'
+import {createApp} from 'vue'
+import Element3 from 'element3'
 import axios from 'axios'
-import  'element3/lib/theme-chalk/index.css'
+import 'element3/lib/theme-chalk/index.css'
 import GlobalComponent from '@/components/index.ts'
+import './common/_import';
 // @ts-ignore
-import  i18n from '@/plugins/i18.js'
+import i18n from '@/plugins/i18.js'
 // @ts-ignore
-import storage from '@/plugins/storage.js'
+import {getStorage} from '@/plugins/storage.js'
 import App from './App.vue'
 // @ts-ignore
-import router  from './routes/index'
+import router from './routes/index'
 // @ts-ignore
-const  app =createApp(App)
+const app = createApp(App)
 //第一种给全局实例挂载方法
+const myMixin = {
+    data() {
+        return {
+            message: 'hello',
+            foo: 'abc'
+        }
+    }
+}
+
 app.mixin({
     methods: {
-        $axios: axios
+        $axios2: axios,
+        $hahha: function () {
+        },
+    },
+    created() {
+        // console.log('这里是 卧槽 的结果-------------', '000000000000000')
+    },
+    data(){
+        return {
+            $ls: getStorage('localStorage'),
+            $ss: getStorage('sessionStorage'),
+            $123:123,
+        }
     }
-})
+   })
 app.use(Element3);
 //第二种给全局实例挂载方法
-app.use(storage)
 app.use(i18n)
 import "@/icons";
+
 app.use(GlobalComponent);
 // app.component('svg-icon', SvgIcon)
 app.use(router).mount('#app')
