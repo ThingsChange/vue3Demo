@@ -48,8 +48,6 @@ export default {
     }
   },
   created() {
-    // console.log('这里是 123 的结果-------------', this.$t('cssStudy.style'))
-    // console.log('这里是 this created 的结果-------------', this)
   },
   setup(props, context) {
       const $ss =inject('$ss')
@@ -76,8 +74,6 @@ export default {
     function selectMenu(data) {
       console.log('这里是 props,context 的结果-------------', props, context)
     }
-
-    console.log('这里是 routeConfig 的结果-------------', routeConfig)
 
     return {defaultOpeneds, handleOpen, handleClose,routeConfig}
   }

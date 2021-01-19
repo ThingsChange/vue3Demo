@@ -9,6 +9,7 @@
     <el-container class="layout-right">
       <el-header>
         <button class='liti-button' @click="changeTheme">改变主题</button>
+        <button class='liti-button' @click="changeLanguage">语言</button>
         <button class='liti-button' @click="addRouteAsync">增加路由</button>
       </el-header>
       <el-main>
@@ -87,8 +88,12 @@ export default defineComponent({
       const nowTheme =window.document.documentElement.getAttribute('data-theme')
       const dataTheme= nowTheme==='default'?'dark':'default'
       // @ts-ignore
-       this.$ls.set('data-theme',dataTheme)
+       this.LS.set('data-theme',dataTheme)
       window.document.documentElement.setAttribute('data-theme', dataTheme)
+    },
+    changeLanguage(){
+      let context :any =this;
+      context.$toggleLang();
     },
     addRouteAsync(){
      let routeA= {
@@ -102,20 +107,18 @@ export default defineComponent({
   },
   setup(props,context){
     const $ss=inject("$ss")
-    console.log('这里是 $ss 1234 的结果-------------', $ss)
-    console.log('这里是 context 的结果-------------', context)
+    // console.log('这里是 $ss 1234 的结果-------------', $ss)
+    // console.log('这里是 context 的结果-------------', context)
   },
   beforeRouteEnter(to:RouteLocationNormalized,from:RouteLocationNormalized,next:NavigationGuardNext) {
     next((context)=>{
-      console.log('这里是 beforeRouteEnter 的结果-------------', context)
+      // console.log('这里是 beforeRouteEnter 的结果-------------', context)
     });
   },
   created() {
-    let  {ctx}:any = getCurrentInstance();
-    let root:ComponentInternalInstance= getCurrentInstance();
-    console.log('这里是 ctx 的结果-------------', ctx,root.ctx,root,this)
-    // let dataTheme= ctx.$ls.get('data-theme') || 'default';
-    //   window.document.documentElement.setAttribute('data-theme', dataTheme)
+    // let  {ctx}:any = getCurrentInstance();
+   // @ts-ignore
+   //  console.log('这里是 ctx 的结果-------------', ctx,this ,this.LS)
   },
   mounted() {
     // let root = getCurrentInstance();
@@ -165,6 +168,7 @@ export default defineComponent({
     //line-height: 200px;
   }
   .avatar-nb{
+    margin-top: 1rem;
     width: 6rem;
     height: 6rem;
   }
@@ -197,28 +201,5 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   font-size: .5rem;
-}
-
-.liti-button {
-  outline: none;
-  border: none;
-  color: white;
-  padding: 0.3rem 0.4rem;
-  border-radius: 0.2rem;
-  cursor: pointer;
-  background: linear-gradient(#3de5fb, #26acbd);
-  text-shadow: 0 1px 1px grey;
-  height: 2rem;
-  /*位置的三个参数
-          1  X轴方向扩散，负值在左，正值在右
-          2 Y轴方向扩散，正值向下，负值向上
-          3 模糊半径   0时不模糊，就正常的阴影，越大越模糊 类似0实体阴影，数值大的变成了模糊阴影
-          4，颜色可放在这三个数字前面，也可以放在这三个数字后面，这四个参数为一组，可以设置多组。
-          */
-  box-shadow: 0 0.2rem 0 #068494, 0 0.2rem 0.2rem grey;
-}
-.liti-button:active {
-  box-shadow: 0 0.1rem 0 #068494, 0 0.1rem 0.1rem grey;
-  transform: translate(0, 0.05rem);
 }
 </style>

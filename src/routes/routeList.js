@@ -1,7 +1,7 @@
 const LayOut = () => import(/* webpackChunkName: "Layout" */ '@v/layout');
 const Animation = () => import(/* webpackChunkName: "Animation" */ '@v/cssStudy/animation');
 const Communicate = () => import(/* webpackChunkName: "Communicate" */ '@v/communicate/index');
-const VueNext = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/reactive');
+const Reactive = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/reactive');
 // 404
 const NotFound = () => import(/* webpackChunkName: "NotFound" */ '@c/ErrorPage/NotFound');
 // 快应用落地页
@@ -25,10 +25,10 @@ const routes = [{
                 component: Communicate
             },
             {
-                path: 'vueNext',
-                name: 'vueNext',
-                component: VueNext
-            },
+                path: 'reactive',
+                name: 'Reactive',
+                component:Reactive
+            }
         ],
     },
 ];

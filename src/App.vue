@@ -7,7 +7,7 @@
 <script>
 import {Options, Vue} from 'vue-class-component';
 // import { Component } from 'vue-property-decorator'
-import HelloWorld from './components/HelloWorld.vue';
+// import HelloWorld from './components/HelloWorld.vue';
 import {reactive, toRefs, provide} from 'vue'
 import {NavigationGuardNext, RouteLocationNormalized} from "vue-router";
 // import {getStorage} from "@/plugins/storage";
@@ -19,7 +19,7 @@ function getStorage(){
 // import   '@a/yanhua.js'
 export default {
   components: {
-    HelloWorld,
+    // HelloWorld,
   },
   data() {
     return {
@@ -76,6 +76,7 @@ export default {
 
 <style lang="scss">
 @import './assets/css/color.scss';
+@import "./assets/css/common.scss";
 
 body {
   margin: 0;

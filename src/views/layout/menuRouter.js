@@ -13,7 +13,8 @@ export const routeConfig = [
     child: [
       { id: '1-1', path: '/crossOrigin', text: '跨域实现' },
       { id: '1-2', path: '', text: '首页' },
-      { id: '1-3', path: '/welcome', text: '欢迎页' }
+      { id: '1-3', path: '/welcome', text: '欢迎页' },
+      { id: '1-4', path: '/qy/reactive', text: 'reactive' }
     ]
   },
   {
