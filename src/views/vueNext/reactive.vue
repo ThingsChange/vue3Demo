@@ -10,15 +10,20 @@
   <div @click="addA">数组填充新数字</div>
   <div>{{ sum }}</div>
   <ndy-hehe>123</ndy-hehe>
+  <reactiveDetail msg='12'></reactiveDetail>
   <button class="liti-button" @click="addAsyncComponent">动态组件</button>
+  <button class="liti-button" @click="toDetail">reactive详情</button>
   <div>
     <async-com v-if="showAsync"></async-com>
   </div>
 </template>
 <script>
 import  {defineComponent, reactive,defineAsyncComponent} from 'vue'
+// import (/* webpackChunkName: "reactiveDetail" */'@v/vueNext/reactiveDetail.vue')
+
 
 import CountDemo from "@/views/vueNext/CountDemo";
+import reactiveDetail from "@/views/vueNext/reactiveDetail";
 
 /*interface Student {
   name: string
@@ -31,17 +36,18 @@ export default defineComponent({
   data() {
     return {
       nums: [1],
-      msg2: 2,
+      msg2: 3122,
       showAsync:false
     }
   },
   components:{
+    // reactiveDetail,
     'async-com': defineAsyncComponent({
       delay: 50000,
       timeout: 3000,
       loader:()=> import(/* webpackChunkName: "HelloWorld" */ './../../components/HelloWorld.vue')
   })
-  },
+},
   methods: {
     addA() {
       this.nums.push(this.nums[this.nums.length - 1] + 1)
@@ -49,14 +55,10 @@ export default defineComponent({
     },
     addAsyncComponent(){
       console.log('这里是 哎呀卧槽 的结果-------------', '哎呀卧槽')
-/*      const AsyncFoo = defineAsyncComponent({
-        delay: 200,
-        timeout: 3000,
-        loader:()=> import(/!* webpackChunkName: "HelloWorld" *!/ './../../components/HelloWorld.vue')
-      })*/
-      // Vue.component('AsyncComponent',AsyncFoo)
-      // console.log('这里是 AsyncFoo 的结果-------------', AsyncFoo)
       this.showAsync=true
+    },
+    toDetail(){
+      this.$router.push({name:'ReactiveDetail'});
     }
   },
   computed: {

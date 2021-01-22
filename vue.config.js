@@ -19,6 +19,7 @@ module.exports = {
     // webpack配置
     // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
     chainWebpack: (config) => {
+        config.plugins.delete('prefetch');
         config.resolve.alias
             // .set("vue$", "vue/dist/vue.esm.js")
             .set('@',resolve('src'))
