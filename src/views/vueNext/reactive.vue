@@ -13,12 +13,19 @@
   <reactiveDetail msg='12'></reactiveDetail>
   <button class="liti-button" @click="addAsyncComponent">动态组件</button>
   <button class="liti-button" @click="toDetail">reactive详情</button>
+  <button class="liti-button" @click="changeStatus">切换状态</button>
   <div>
-    <async-com v-if="showAsync"></async-com>
+    姓名：{{person.basic.name}}
+    当前状态：{{person.status}}
+    ref  B的：{{b}}
+<!--    food:{{food}}-->
+  </div>
+  <div>
+    <async-com :person="person" v-if="showAsync"></async-com>
   </div>
 </template>
 <script>
-import  {defineComponent, reactive,defineAsyncComponent} from 'vue'
+import  {defineComponent, reactive,defineAsyncComponent,isReactive,toRaw,ref,toRefs} from 'vue'
 // import (/* webpackChunkName: "reactiveDetail" */'@v/vueNext/reactiveDetail.vue')
 
 
@@ -64,6 +71,35 @@ export default defineComponent({
   computed: {
     sum() {
       return this.nums.reduce((vv, v) => vv + v)
+    }
+  },
+  setup(){
+    let person = reactive({
+      status:'tired',
+      basic:{
+        name:'1',
+        age:2
+      }
+    })
+    let b=ref(12);
+    let  changeStatus = function(){
+      person.status='happy'
+      person.basic.name='逗比'
+    }
+    let food=ref({
+      name:'麻婆豆腐',
+      unit:'份',
+      taste:['麻','辣'],
+      price:10,
+
+    })
+    console.log('这里是 person 的结果-------------', person,toRaw(person),b)
+    console.log('这里是 food 的结果-------------', food,toRefs(food))
+    return {
+      person,
+      changeStatus,
+      b,
+      food
     }
   }
 })

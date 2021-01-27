@@ -2,7 +2,6 @@
 // @ts-ignore
 import Food from '@/common/BabelOptimize.js'
 
-console.log('这里是 Food 的结果-------------', Food)
 import SvgIcon from "@/components/SvgIcon.vue";
 import {createApp} from 'vue'
 import Element3 from 'element3'

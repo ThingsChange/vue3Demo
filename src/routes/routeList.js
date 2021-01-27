@@ -3,6 +3,7 @@ const Animation = () => import(/* webpackChunkName: "Animation" */ '@v/cssStudy/
 const Communicate = () => import(/* webpackChunkName: "Communicate" */ '@v/communicate/index');
 const Reactive = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/reactive');
 const ReactiveDetail = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/reactiveDetail');
+const CompostionApi = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/compostionApi');
 // 404
 const NotFound = () => import(/* webpackChunkName: "NotFound" */ '@c/ErrorPage/NotFound');
 // 快应用落地页
@@ -34,6 +35,11 @@ const routes = [{
                 path: 'reactiveDetail',
                 name: 'ReactiveDetail',
                 component:ReactiveDetail
+            },
+            {
+                path: 'compostionApi',
+                name: 'CompostionApi',
+                component:CompostionApi
             }
         ],
     },
