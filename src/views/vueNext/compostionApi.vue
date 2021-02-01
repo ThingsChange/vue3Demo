@@ -19,18 +19,23 @@
       <button @click.stop="delFood(food.id)">下架</button>
     </div>
   </div>
+  <compostionChild></compostionChild>
 </template>
 <script>
 
 import foodHandler from "@/views/vueNext/food";
 import foodHelper from "@/views/vueNext/foodHelper";
+import compostionChild from "@/views/vueNext/compostionChild";
 
 export default {
   name: "compostionApi",
+  components: {
+    compostionChild
+  },
   setup() {
     let {state, addFood, delFood, printFood} = foodHandler()
-    let {addFoodPrice,minusFoodPrice} = foodHelper(state);
-    return {state, addFood, delFood, printFood, addFoodPrice,minusFoodPrice}
+    let {addFoodPrice, minusFoodPrice} = foodHelper(state);
+    return {state, addFood, delFood, printFood, addFoodPrice, minusFoodPrice}
   }
 }
 </script>
