@@ -5,7 +5,7 @@ const Reactive = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/
 const ReactiveDetail = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/reactiveDetail');
 const CompostionApi = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/compostionApi');
 const ToRef = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/toRef');
-const Effect = () => import(/* webpackChunkName: "effect" */ '@v/vueNext/effect');
+const Effect = () => import(/* webpackChunkName: "effect" */ '@v/vueNext/effectTest');
 // 404
 const NotFound = () => import(/* webpackChunkName: "NotFound" */ '@c/ErrorPage/NotFound');
 // 快应用落地页

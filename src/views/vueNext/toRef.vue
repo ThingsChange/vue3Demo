@@ -7,7 +7,7 @@
 
  <div>{{foodR}}</div><br/>
  <div>{{imgList}}</div>
-
+  <div>{{state}} <button @click="changeState">改变左侧的</button></div>
   <h3>那么toRefs 有是什么？</h3>
   <p>toRef() 的一个问题是定义起来极其麻烦，一次只能转换一个 key，因此我们可以封装一个函数，直接把一个响应式对象的所有key都转成 ref，这就是 toRefs()</p>
 </template>
@@ -39,18 +39,30 @@ export default {
       console.log('这里是 imgList.url 的结果-------------', imgList.value.unit)
       console.log('这里是 foodTemp.img 的结果-------------', foodTemp.unit)
     })
+    //这个是不会用数据的。
     foodR.img= ['1', '2','3']
+    //下面这种写法 原始数据以及相应数据视图均会更新，因为他们用的是一个数据
     // foodR.img.push('3')
-    foodR.unit='份'
+    // foodR.unit='份'
 
+    // imgList.value.unit='盒'
     let foodR2=toRefs(foodR);
     effect(()=>{
       console.log('这里是 foodR2.count 的结果-------------', foodR2.count.value)
     })
     console.log('这里是 foodR2 的结果-------------', foodR2)
     foodR.count=2;
+
+    let obj= {name:'zs'}
+    let state = toRef(obj,'name')
+    //toRef 将一个对象中的属性变成响应式，我们修改响应式数据是会影响元数据的，但是并不会触发视图更新。
+    let changeState =()=>{
+      state.value = 'lisi'
+      console.log('这里是 state 的结果-------------', state)
+      console.log('这里是 obj 的结果-------------', obj)
+    }
     return {
-      foodR,imgList
+      foodR,imgList,state,changeState
     }
   }
 }
