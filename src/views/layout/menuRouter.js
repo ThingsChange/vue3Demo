@@ -14,7 +14,8 @@ export const routeConfig = [
       { id: '1-1', path: '/crossOrigin', text: '跨域实现' },
       { id: '1-2', path: '', text: '首页' },
       { id: '1-3', path: '/qy/compostionApi', text: 'CompostionApi体验' },
-      { id: '1-4', path: '/qy/reactive', text: 'reactive' }
+      { id: '1-4', path: '/qy/reactive', text: 'reactive' },
+      { id: '1-6', path: '/qy/customRef', text: 'customRef' }
     ]
   },
   {

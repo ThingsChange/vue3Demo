@@ -4,6 +4,7 @@ const Communicate = () => import(/* webpackChunkName: "Communicate" */ '@v/commu
 const Reactive = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/reactive');
 const ReactiveDetail = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/reactiveDetail');
 const CompostionApi = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/compostionApi');
+const CustomRef = () => import(/* webpackChunkName: "CustomRef" */ '@v/vueNext/customRef');
 // 404
 const NotFound = () => import(/* webpackChunkName: "NotFound" */ '@c/ErrorPage/NotFound');
 // 快应用落地页
@@ -40,7 +41,12 @@ const routes = [{
                 path: 'compostionApi',
                 name: 'CompostionApi',
                 component:CompostionApi
-            }
+            },
+            {
+                path: 'customRef',
+                name: 'CustomRef',
+                component:CustomRef
+            },
         ],
     },
 ];
