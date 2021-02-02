@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import {reactive} from "vue";
-import {effect} from '@vue/reactivity'
+import {reactive,watchEffect} from "vue";
+import {effect,} from '@vue/reactivity'
 
 export default {
   name: "effect",
@@ -26,6 +26,9 @@ export default {
       onTrigger({effect,target,type,key}){
         console.log('这里是 effect,target,type,key 的结果---2----------', effect,target,type,key)
       }
+    })
+    watchEffect(() => {
+      console.log(obj.foo)
     })
     return {obj,add}
   }
