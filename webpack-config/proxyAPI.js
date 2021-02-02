@@ -16,19 +16,16 @@ const createProxyAPI = (isPro)=>{
             target: 'http://dohko.online.h5api.hualala.com',
             changeOrigin: true
         },
-        '/orh5/': {
-            target: 'http://dohko.online.h5api.hualala.com',
-        },
-        '/mauth/': {
-            target: 'http://mauth.dohko.restaurant.hualala.com',
-        },
         '/broker/': {
             target: 'http://172.16.32.124:8080',
             ws: true,
         },
-        '/multi/': {
-            target: 'http://dohko.multifunction.http.hualala.com/'
-        },
+        '/mock/':{
+            target:'http://localhost:8080',
+            pathRewrite:{
+                '^/mock':'',
+            }
+        }
     }
     if(isPro){
         devProxy = Object.assign(devProxy, {
@@ -49,7 +46,7 @@ const createProxyAPI = (isPro)=>{
             hash: false,
             maxModules: 0
         },
-        compress: true,
+        compress: false,
         host: '0.0.0.0',
         contentBase: path.join(__dirname, 'dist'),
         disableHostCheck: true,
@@ -63,6 +60,7 @@ const createProxyAPI = (isPro)=>{
                 // { from: /\/achievement/, to: '/index.html' }
             ]
         },
+        before:require('./../mocks'),
         proxy: devProxy,
     }
 }
