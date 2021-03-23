@@ -31,6 +31,11 @@ import  {defineComponent, reactive,defineAsyncComponent,isReactive,toRaw,ref,toR
 
 import CountDemo from "@/views/vueNext/CountDemo";
 import reactiveDetail from "@/views/vueNext/reactiveDetail";
+import(
+    /*  webpackPrefetch: true */
+    /* webpackChunkName: "HelloWorld" */
+    './../../components/HelloWorld.vue'
+    )
 
 /*interface Student {
   name: string

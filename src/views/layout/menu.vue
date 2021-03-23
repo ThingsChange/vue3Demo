@@ -57,7 +57,7 @@ export default {
     //临时性死区你敢信他不报错？
     // let routeConfig = ref(routeConfig)
     let routeConfig = ref(routeList)
-    console.log('这里是 routeConfig 的结果-------------', routeConfig)
+    // console.log('这里是 routeConfig 的结果-------------', routeConfig)
     let root = getCurrentInstance();
     let router = useRouter();
     let route = useRoute();

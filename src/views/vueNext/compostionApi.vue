@@ -8,6 +8,7 @@
       <input type="text" placeholder="数量" v-model="state.food.count">
       <button @click.prevent.stop="addFood"> 添加</button>
     </form>
+    <button @click="abc"> 呵呵</button>
     <div v-for="(food,index) of state.foodList" :key=food.id>
       <span>{{ food.count }}</span>
       <span>{{ food.unit }}</span>
@@ -19,23 +20,33 @@
       <button @click.stop="delFood(food.id)">下架</button>
     </div>
   </div>
-  <compostionChild></compostionChild>
+  <compostionChild v-if="showChild"></compostionChild>
 </template>
 <script>
 
 import foodHandler from "@/views/vueNext/food";
 import foodHelper from "@/views/vueNext/foodHelper";
-import compostionChild from "@/views/vueNext/compostionChild";
+// import compostionChild from "@/views/vueNext/compostionChild";
+import {reactive} from "vue";
 
 export default {
   name: "compostionApi",
   components: {
-    compostionChild
+    // compostionChild:customRef
+        compostionChild:()=>import(
+        /*webChunkName : "customRef"*/
+            './customRef.vue'
+            )
   },
   setup() {
+    let res=reactive({showChild:false})
     let {state, addFood, delFood, printFood} = foodHandler()
     let {addFoodPrice, minusFoodPrice} = foodHelper(state);
-    return {state, addFood, delFood, printFood, addFoodPrice, minusFoodPrice}
+    function abc(){
+      console.log('这里是 12345 的结果-------------', 12345)
+      res.showChild=true
+    }
+    return {...res,state, addFood, delFood, printFood, addFoodPrice, minusFoodPrice,abc}
   }
 }
 </script>

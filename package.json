@@ -7,7 +7,8 @@
     "s": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "crm": "vue-cli-service build --mode crm",
-    "lint": "vue-cli-service lint",
+    "lint": "eslint --ext .tsx,.ts,.js --fix ./src",
+    "fix": "prettier --write  ./src",
     "prebuild": "npm run font",
     "font": "node scripts/svg2font.js"
   },
@@ -34,7 +35,9 @@
     "element3": "0.0.38",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0",
+    "husky": "^5.2.0",
     "jquery": "^3.3.1",
+    "lint-staged": "^10.5.4",
     "mockjs": "^1.1.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^10.1.0",
@@ -45,6 +48,18 @@
     "vue-i18n": "^8.22.3",
     "vue-property-decorator": "^9.1.2",
     "vue-router": "^4.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*{.ts,.js}":[
+      "eslint --ext .tsx,.ts --fix ./src",
+      "prettier --write",
+      "git add"
+    ]
   },
   "eslintConfig": {
     "root": true,

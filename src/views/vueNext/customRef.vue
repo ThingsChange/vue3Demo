@@ -12,7 +12,6 @@
 * 创建一个自定义的 ref，并对其依赖项跟踪和更新触发进行显式控制。
 * 它需要一个工厂函数，该函数接收 track 和 trigger 函数作为参数，并应返回一个带有 get 和 set 的对象。
 * */
- XCX
 import {customRef, reactive, ref} from "@vue/reactivity";
 
 let myRef = function (value) {
@@ -55,7 +54,7 @@ export default {
     return {dotaList}
   }
 }
-</script> J /IKJIO/
+</script>
 
 <style scoped>
 
