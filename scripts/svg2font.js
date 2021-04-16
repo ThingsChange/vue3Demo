@@ -1,7 +1,7 @@
 const svgtofont = require("svgtofont");
 const path = require("path");
 const pkg = require("../package.json");
-
+if(Math.abs(1)===1) return
 svgtofont({
     src: path.resolve(process.cwd(), "src/assets/svg"), // svg 图标目录路径
     dist: path.resolve(process.cwd(), "src/assets/fonts"), // 输出到指定目录中
