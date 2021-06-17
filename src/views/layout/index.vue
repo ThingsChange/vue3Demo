@@ -71,8 +71,9 @@ export default defineComponent({
           title: "about",
           content: "相关",
           show: true
-        }
+        },
       ],
+      mcColor:'red',
       active: 0,
     }
   },
@@ -87,6 +88,7 @@ export default defineComponent({
     changeTheme(){
       const nowTheme =window.document.documentElement.getAttribute('data-theme')
       const dataTheme= nowTheme==='default'?'dark':'default'
+      this.mcColor= nowTheme==='default'?'red':'blue'
       // @ts-ignore
        this.LS.set('data-theme',dataTheme)
       window.document.documentElement.setAttribute('data-theme', dataTheme)
@@ -116,6 +118,7 @@ export default defineComponent({
     });
   },
   created() {
+    this.changeTheme();
     // let  {ctx}:any = getCurrentInstance();
    // @ts-ignore
    //  console.log('这里是 ctx 的结果-------------', ctx,this ,this.LS)
@@ -129,7 +132,8 @@ export default defineComponent({
 })
 
 </script>
-<style scoped lang="scss">
+<style scoped lang="scss" >
+
 .layout{
   display: flex;
   height: 100vh;

@@ -20,3 +20,10 @@
   box-shadow: 0 0.1rem 0 #068494, 0 0.1rem 0.1rem grey;
   transform: translate(0, 0.05rem);
 }
+//定位上下左右居中
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

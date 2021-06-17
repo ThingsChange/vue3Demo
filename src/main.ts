@@ -19,6 +19,7 @@ import App from './App.vue'
 import router from './routes/index'
 // @ts-ignore
 const app = createApp(App)
+const varWidth=100
 //第一种给全局实例挂载方法
 const myMixin = {
     data() {

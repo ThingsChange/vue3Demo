@@ -14,6 +14,7 @@
   <button class="liti-button" @click="addAsyncComponent">动态组件</button>
   <button class="liti-button" @click="toDetail">reactive详情</button>
   <button class="liti-button" @click="changeStatus">切换状态</button>
+  <button class="liti-button" @click="testReadOnly">测试readOnly</button>
   <div>
     姓名：{{person.basic.name}}
     当前状态：{{person.status}}
@@ -25,7 +26,7 @@
   </div>
 </template>
 <script>
-import  {defineComponent, reactive,defineAsyncComponent,isReactive,toRaw,ref,toRefs} from 'vue'
+import  {defineComponent, reactive,defineAsyncComponent,isReactive,toRaw,ref,toRefs,readonly} from 'vue'
 // import (/* webpackChunkName: "reactiveDetail" */'@v/vueNext/reactiveDetail.vue')
 
 
@@ -70,7 +71,7 @@ export default defineComponent({
       this.showAsync=true
     },
     toDetail(){
-      this.$router.push({name:'ReactiveDetail'});
+      this.$router.push({name:'ReactiveDetail',params:{id:1}});
     }
   },
   computed: {
@@ -100,11 +101,20 @@ export default defineComponent({
     })
     console.log('这里是 person 的结果-------------', person,toRaw(person),b)
     console.log('这里是 food 的结果-------------', food,toRefs(food))
+
+
+    let personReadonly = readonly(person)
+    const testReadOnly = function (){
+      console.log('这里是 傻逼 的结果-------------', '1')
+      person.status='happya'
+      personReadonly.status = '我是不可变得'
+    }
     return {
       person,
       changeStatus,
       b,
-      food
+      food,
+      testReadOnly
     }
   }
 })

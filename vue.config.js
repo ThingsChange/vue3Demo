@@ -47,6 +47,21 @@ module.exports = {
         imagesRule.exclude.add(resolve("src/icons"));
         config.module.rule("images").test(/\.(png|jpe?g|gif|svg)(\?.*)?$/);
 
+        const oneOfsMap = config.module.rule('scss').oneOfs.store
+        oneOfsMap.forEach(item => {
+            item
+                .use('sass-resources-loader')
+                .loader('sass-resources-loader')
+                .options({
+                    // Provide path to the file with resources
+                    // resources: './path/to/resources.scss',
+
+                    // Or array of paths
+                    resources: ['./src/assets/css/var-default.scss', './src/assets/css/var-dark.scss', './src/assets/css/common.scss']
+                })
+                .end()
+        })
+
 /*        const jsRule = config.module.rule('js')
         jsRule.exclude.add(/node_modules/);
         jsRule.include.add(resolve('src/views/layout/menuRouter'))

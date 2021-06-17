@@ -1,0 +1,6 @@
+$exportedValue: #ccc;
+$abc:blue;
+:export {
+  exportedKey: $exportedValue;
+  /* ... */
+}

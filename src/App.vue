@@ -8,7 +8,7 @@
 import {Options, Vue} from 'vue-class-component';
 // import { Component } from 'vue-property-decorator'
 // import HelloWorld from './components/HelloWorld.vue';
-import {reactive, toRefs, provide} from 'vue'
+import {reactive, toRefs, provide, useCssVars} from 'vue'
 import {NavigationGuardNext, RouteLocationNormalized} from "vue-router";
 // import {getStorage} from "@/plugins/storage";
 function getStorage(){
@@ -23,10 +23,14 @@ export default {
   },
   data() {
     return {
-      items: [1, 2, 3]
+      items: [1, 2, 3],
+      color:'red'
     }
   },
   setup() {
+    useCssVars((_ctx)=>({
+      color:_ctx.color
+    }))
     //定义接口类型
     /*    interface ItemObj {
           title: string;
@@ -76,10 +80,13 @@ export default {
 
 <style lang="scss">
 @import './assets/css/color.scss';
-@import "./assets/css/common.scss";
+//@import "./assets/css/common.scss";
 
 body {
   margin: 0;
+}
+:root{
+  --mc-color: v-bind(color);
 }
 
 #app {

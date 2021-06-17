@@ -7,14 +7,27 @@
   --color-contrast-medium: hsl(240, 1%, 48%);
   --color-contrast-high: hsl(240, 4%, 20%);
   --color-contrast-higher: black;
+
+  @for $i from 1 to 10{
+    //--mc#{$i}Color:rgba(yellow,  #{$i/10})
+    --mc#{$i}Color:hsla(15, 99%, 60%, #{$i/10})
+  }
 }
 
 [data-theme] {
   background-color: var(--color-bg);
   color: var(--color-contrast-high);
+  .changshi{
+    color:var(--color-primary) ;
+  }
+  --width:expression(varWidth + "px");
 }
 
 [data-theme="dark"] {
+  @for $i from 1 to 10{
+    --mc#{$i}Color:hsla(15, 99%, 60%, #{$i/10})
+  }
+
   --color-primary: red;
   /* color contrasts */
   --color-bg: black;

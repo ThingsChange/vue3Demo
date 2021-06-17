@@ -36,7 +36,7 @@ const routes = [{
                 component:Reactive
             },
             {
-                path: 'reactiveDetail',
+                path: 'reactiveDetail/:id',
                 name: 'ReactiveDetail',
                 component:ReactiveDetail
             },
