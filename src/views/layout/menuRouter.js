@@ -15,7 +15,8 @@ export const routeConfig = [
       { id: '1-3', path: '/qy/compostionApi', text: 'CompostionApi体验' },
       { id: '1-4', path: '/qy/reactive', text: 'reactive' },
       { id: '1-5', path: '/qy/effect', text: 'effect' },
-        { id: '1-6', path: '/qy/customRef', text: 'customRef' }
+    { id: '1-6', path: '/qy/customRef', text: 'customRef' },
+    { id: '1-7', path: '/qy/lifeCycle', text: 'lifeCycle' }
     ]
   },
   {

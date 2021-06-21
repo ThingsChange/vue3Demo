@@ -39,7 +39,7 @@ export default {
     effect(()=>{
       console.log('这里是 imgList.url 的结果-------------', imgList)
       console.log('这里是 imgList.url 的结果-------------', imgList.value.unit)
-      console.log('这里是 foodTemp.img 的结果-------------', foodTemp.unit)
+      console.log('这里是 foodTemp.img 的结果-------------', foodTemp.unit.value)
     })
     //这个是不会用数据的。
     foodR.img= ['1', '2','3']
@@ -60,6 +60,7 @@ export default {
     //toRef 将一个对象中的属性变成响应式，我们修改响应式数据是会影响元数据的，但是并不会触发视图更新。
     let changeState =()=>{
       state.value = 'lisi'
+      foodR.unit = foodR.unit + '1';
       foodR.count++;
       console.log('这里是 state 的结果-------------', state)
       console.log('这里是 obj 的结果-------------', obj)
