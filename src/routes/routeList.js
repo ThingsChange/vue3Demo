@@ -7,6 +7,7 @@ const CompostionApi = () => import(/* webpackChunkName: "Communicate" */ '@v/vue
 const ToRef = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/toRef');
 const Effect = () => import(/* webpackChunkName: "effect" */ '@v/vueNext/effectTest');
 const CustomRef = () => import(/* webpackChunkName: "CustomRef" */ '@v/vueNext/customRef');
+const LifeCycle = () => import(/* webpackChunkName: "LifeCycle" */ '@v/vueNext/lifeCycle');
 
 // 404
 const NotFound = () => import(/* webpackChunkName: "NotFound" */ '@c/ErrorPage/NotFound');
@@ -59,6 +60,11 @@ const routes = [{
                 path: 'customRef',
                 name: 'CustomRef',
                 component:CustomRef
+            },
+            {
+                path: 'lifeCycle',
+                name: 'LifeCycle',
+                component:LifeCycle
             },
         ],
     },

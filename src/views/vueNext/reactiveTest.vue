@@ -7,7 +7,7 @@
   <div @click="inc">加1</div>
   <div @click="reset">重置</div>
   <div>{{ nums }}</div>
-  <div @click="addA">数组填充新数字</div>
+  <button class="liti-button"  @click="addA">数组填充新数字</button>
   <div>{{ sum }}</div>
   <ndy-hehe>123</ndy-hehe>
   <reactiveDetail msg='12'></reactiveDetail>
@@ -19,7 +19,7 @@
     姓名：{{person.basic.name}}
     当前状态：{{person.status}}
     ref  B的：{{b}}
-<!--    food:{{food}}-->
+<!--    food:{{food}}-->-
   </div>
   <div>
     <async-com :person="person" v-if="showAsync"></async-com>
