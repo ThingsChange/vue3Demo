@@ -13,9 +13,11 @@
         <button class='liti-button' @click="addRouteAsync">增加路由</button>
       </el-header>
       <el-main>
+        <div id="teleportWrap" class="vue-next-wrapper">
+        </div>
         <router-view/>
       </el-main>
-      <el-footer>Footer</el-footer>
+       <el-footer>Footer</el-footer>
     </el-container>
   </el-container>
 </template>
