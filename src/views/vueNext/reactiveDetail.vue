@@ -1,5 +1,5 @@
 <template>
-      <div class="liti-button">
+<!--    <div class="liti-button">
         我是ReactiveDetail的详情页面，测试pretch功能。
       </div>
   <div class="test">
@@ -13,9 +13,20 @@
   </div>
   <div class="vue3-theme">
     你大爷还是你大爷
-  </div>
-  <button @click="refresh">点我</button>
-  <div>{{$route}}</div>
+  </div>-->
+<!--  <div>{{$route}}</div>-->
+  <teleport class="scope-class" to="#teleportWrap">
+    <div class="a111">
+      {{location}}
+      {{userGeolocation}}
+      {{abc}}
+    </div>
+  <p>
+    {{location2}}
+    {{location3}}
+    {{geolocation3}}</p>
+    <button @click="updateLocation">点我</button>
+  </teleport>
 </template>
 
 
@@ -23,10 +34,40 @@
 // import cssObj from '@/assets/css/var-dark.scss'
 //
 // console.log('这里是 cssObj 的结果-------------', cssObj)
+import {inject ,toRefs, toRef} from "vue";
+
 export default {
   methods:{
     refresh(){
       window.location.reload();
+    }
+  },
+  props:['title','msg','location2','geolocation','abc'],
+  setup(props,context){
+    console.log('这里是   props,context  ------------', props, context)
+    console.log('这里是   context.attrs  ------------', context.attrs)
+    //这样结构可以响应式
+    let pp = toRefs(props);
+    //而下面的ES6的方式去不是响应式(至于geolocation为啥是响应式，因为他解构出来的值依旧是一个响应式的对象
+    let {location2:location3,geolocation:geolocation3} =props
+
+    let ab =toRef(props,'ab')
+    console.log('这里是   pp  ------------', pp,location3,ab)
+    console.log('这里是   props.title  ------------', props.title)
+    const location =  inject('location','北京市')
+    const userGeolocation = inject('geolocation')
+    console.log('这里是 getLocation 的结果-------------', userGeolocation, location )
+    const  updateLocation = inject('updateLocation')
+/*    const  updateLocation = function (){
+      userGeolocation .latitude = '110'
+      userGeolocation .longitude = '100'
+    }*/
+    return {
+      location,
+      userGeolocation,
+      updateLocation,
+      location3,
+      geolocation3
     }
   }
 }

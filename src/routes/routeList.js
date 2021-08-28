@@ -1,8 +1,8 @@
 const LayOut = () => import(/* webpackChunkName: "Layout" */ '@v/layout');
 const Animation = () => import(/* webpackChunkName: "Animation" */ '@v/cssStudy/animation');
 const Communicate = () => import(/* webpackChunkName: "Communicate" */ '@v/communicate/index');
-const Reactive = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/reactiveTest');
-const ReactiveDetail = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/reactiveDetail');
+const Reactive = () => import(/* webpackChunkName: "reactive" */ '@v/vueNext/reactiveTest');
+const ReactiveDetail = () => import(/* webpackChunkName: "reactiveDetail" */ '@v/vueNext/reactiveDetail');
 const CompostionApi = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/compostionApi');
 const ToRef = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/toRef');
 const Effect = () => import(/* webpackChunkName: "effect" */ '@v/vueNext/effectTest');
