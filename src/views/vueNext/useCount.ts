@@ -1,5 +1,5 @@
+// @ts-ignore
 import {ref, Ref, watch} from 'vue'
-
 interface Range {
     min?: number,
     max?: number

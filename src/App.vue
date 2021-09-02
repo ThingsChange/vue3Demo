@@ -2,6 +2,7 @@
   <section>
     <router-view/>
   </section>
+  <div id="surprise" v-if="a"></div>
 </template>
 
 <script>
@@ -23,6 +24,7 @@ export default {
   },
   data() {
     return {
+      a:false,
       items: [1, 2, 3],
       color:'red'
     }
@@ -97,6 +99,13 @@ body {
   color: #2c3e50;
 }
 
+#surprise{
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.6);
+}
 .icon-date {
   width: 3rem !important;
   height: 3rem !important;
