@@ -8,6 +8,7 @@ const ToRef = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/toR
 const Effect = () => import(/* webpackChunkName: "effect" */ '@v/vueNext/effectTest');
 const CustomRef = () => import(/* webpackChunkName: "CustomRef" */ '@v/vueNext/customRef');
 const LifeCycle = () => import(/* webpackChunkName: "LifeCycle" */ '@v/vueNext/lifeCycle');
+const TSIn = () => import(/* webpackChunkName: "LifeCycle" */ '@v/TS/TSIn');
 
 // 404
 const NotFound = () => import(/* webpackChunkName: "NotFound" */ '@c/ErrorPage/NotFound');
@@ -65,6 +66,11 @@ const routes = [{
                 path: 'lifeCycle',
                 name: 'LifeCycle',
                 component:LifeCycle
+            },
+            {
+                path: 'tsin',
+                name: 'TSIn',
+                component:TSIn
             },
         ],
     },

@@ -87,9 +87,9 @@ export default {
 body {
   margin: 0;
 }
-:root{
+/*:root{
   --mc-color: v-bind(color);
-}
+}*/
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
