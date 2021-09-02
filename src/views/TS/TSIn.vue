@@ -13,7 +13,7 @@ export default {
 
     function conSo(): void {
       console.log(getInfo('帅哥'));
-      console.log('这里是 1234 的结果-------------', 123,arr4)
+      console.log('这里是 1234 的结果-------------', 1234,arr4)
       console.log(sum(0,...arr));
     }
 
