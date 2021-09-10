@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>lifecycle - 生命周期</h1>
+    <h1>{{ test() }}</h1>
     <p>{{cao}}</p>
     <button @click="updateData">Update data {{data.displaySurpriceInline}}</button>
     <teleport v-if="showTeleport" to="#surprise" :disabled="data.displaySurpriceInline">
@@ -33,36 +34,37 @@ import {
   onRenderTriggered,
   computed, ref, getCurrentInstance
 } from "vue";
+import {effect} from "vue/dist/vue.esm-browser";
 
 export default {
   name: "Lifecycle",
   setup() {
     onBeforeMount(() => {
-      debugger; // eslint-disable-line
+      // debugger; // eslint-disable-line
     });
     onMounted(() => {
       console.log('这里是  的结果-------------', getCurrentInstance())
       let  {ctx} = getCurrentInstance();
-      console.log('这里是 ctx 的结果-------------', ctx)
-      debugger; // eslint-disable-line
+      console.log('这里是 ctx 的结果-------------', getCurrentInstance())
+      // debugger; // eslint-disable-line
     });
     onBeforeUpdate(() => {
-      debugger; // eslint-disable-line
+      // debugger; // eslint-disable-line
     });
     onUpdated(() => {
-      debugger; // eslint-disable-line
+      // debugger; // eslint-disable-line
     });
     onBeforeUnmount(() => {
-      debugger; // eslint-disable-line
+      // debugger; // eslint-disable-line
     });
     onUnmounted(() => {
-      debugger; // eslint-disable-line
+      // debugger; // eslint-disable-line
     });
     onRenderTracked((e) => { // eslint-disable-line
-      debugger; // eslint-disable-line
+      // debugger; // eslint-disable-line
     });
     onRenderTriggered((e) => { // eslint-disable-line
-      debugger; // eslint-disable-line
+      // debugger; // eslint-disable-line
     });
     let a=Symbol.for(2)
     const data = reactive({
@@ -73,6 +75,7 @@ export default {
     });
     let showTeleport= ref(false)
     const updateData = () => {
+      console.log('这里是 123 的结果-------------', 123)
       data[a]=3
       data.name = "chen haiong" + new Date().toLocaleTimeString();
     };
@@ -80,7 +83,16 @@ export default {
       console.log('这里是 data 的结果-------------', data)
       return Reflect.ownKeys(data)
     })
-    return { data, updateData,cao,showTeleport};
+    let test = effect(()=>{
+      debugger;
+      console.log('这里是 test 的结果-------------', test)
+      console.log('123',data.name+data.displaySurpriceInline)
+    })
+    let c =effect(()=>{
+      return test;
+    })
+    test();
+    return { data, updateData,cao,showTeleport,test,c};
   },
 };
 </script>

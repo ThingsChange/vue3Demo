@@ -9,6 +9,7 @@ const Effect = () => import(/* webpackChunkName: "effect" */ '@v/vueNext/effectT
 const CustomRef = () => import(/* webpackChunkName: "CustomRef" */ '@v/vueNext/customRef');
 const LifeCycle = () => import(/* webpackChunkName: "LifeCycle" */ '@v/vueNext/lifeCycle');
 const TSIn = () => import(/* webpackChunkName: "LifeCycle" */ '@v/TS/TSIn');
+const cleanUP = () => import(/* webpackChunkName: "LifeCycle" */ '@v/vueNext/cleanUP');
 
 // 404
 const NotFound = () => import(/* webpackChunkName: "NotFound" */ '@c/ErrorPage/NotFound');
@@ -71,6 +72,11 @@ const routes = [{
                 path: 'tsin',
                 name: 'TSIn',
                 component:TSIn
+            },
+            {
+                path: 'cleanUP',
+                name: 'cleanUP',
+                component:cleanUP
             },
         ],
     },

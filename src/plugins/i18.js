@@ -47,6 +47,6 @@ const install = function (app) {
 
         }
     })
-    console.log(app.config.globalProperties)
+    // console.log(app.config.globalProperties)
 }
 export default {install}

@@ -17,6 +17,7 @@ export const routeConfig = [
       { id: '1-5', path: '/qy/effect', text: 'effect' },
       { id: '1-6', path: '/qy/customRef', text: 'customRef' },
       { id: '1-7', path: '/qy/lifeCycle', text: 'lifeCycle' },
+      { id: '1-8', path: '/qy/cleanUP', text: 'cleanUP' },
       { id: '1-17', path: '/qy/TSIn', text: 'TSIn' }
     ]
   },

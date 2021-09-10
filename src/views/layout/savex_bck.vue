@@ -1,3 +1,4 @@
+<!--
 <template>
   <el-container class="layout">
     <el-aside width="200px"  class="layout-left">
@@ -111,23 +112,23 @@ export default defineComponent({
   },
   setup(props,context){
     const $ss=inject("$ss")
-    // console.log('这里是 $ss 1234 的结果-------------', $ss)
-    // console.log('这里是 context 的结果-------------', context)
+    // console.log('这里是 $ss 1234 的结果-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;', $ss)
+    // console.log('这里是 context 的结果-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;', context)
   },
   beforeRouteEnter(to:RouteLocationNormalized,from:RouteLocationNormalized,next:NavigationGuardNext) {
     next((context)=>{
-      // console.log('这里是 beforeRouteEnter 的结果-------------', context)
+      // console.log('这里是 beforeRouteEnter 的结果-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;', context)
     });
   },
   created() {
     // this.changeTheme();
     // let  {ctx}:any = getCurrentInstance();
    // @ts-ignore
-   //  console.log('这里是 ctx 的结果-------------', ctx,this ,this.LS)
+   //  console.log('这里是 ctx 的结果-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;', ctx,this ,this.LS)
   },
   mounted() {
     // let root = getCurrentInstance();
-    // console.log('这里是 this 1231241 的结果-------------', root)
+    // console.log('这里是 this 1231241 的结果-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;', root)
   },
 
 
@@ -209,3 +210,4 @@ export default defineComponent({
   font-size: .5rem;
 }
 </style>
+-->

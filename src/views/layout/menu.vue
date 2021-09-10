@@ -64,7 +64,7 @@ export default {
     // console.log('这里是 root 的结果-------------', root, router, route)
 
     function handleOpen(key, keyPath) {
-      console.log('这里是 props,context 的结果-------------', props, context)
+      // console.log('这里是 props,context 的结果-------------', props, context)
       console.log(key, keyPath)
     }
 
@@ -73,7 +73,7 @@ export default {
     }
 
     function selectMenu(data) {
-      console.log('这里是 props,context 的结果-------------', props, context)
+      // console.log('这里是 props,context 的结果-------------', props, context)
     }
 
     return {defaultOpeneds, handleOpen, handleClose,routeConfig}
