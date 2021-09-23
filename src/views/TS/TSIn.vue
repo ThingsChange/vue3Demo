@@ -2,13 +2,38 @@
   <div>1{{ a }}3</div>
   <button @click="conSo">输出语句，无返回的函数</button>
   <div>我是枚举类型{{errorT}}</div>
+  <section>
+    <div>
+    <div class="logo">
+      <h1>法医</h1>
+    </div>
+    <ul class="nav">
+      <li><a href="">menu</a></li>
+      <li><a href="">menu</a></li>
+      <li><a href="">menu</a></li>
+      <li><a href="">menu</a></li>
+      <li><a href="">menu</a></li>
+    </ul>
+    </div>
+    <div class="abc">1{{ a }}3</div>
+    <button @click="conSo">输出语句，无返回的函数</button>
+    <div>我是枚举类型{{errorT}}</div>
+  </section>
+
 </template>
 
 <script lang="ts">
-
+import { getCurrentInstance, onMounted } from 'vue';
 export default {
   name: "TSIn",
-  setup() {
+  setup(props: any, context: any) {
+    let instance = getCurrentInstance();
+
+    onMounted(()=>{
+      console.log('这里是 root1 的结果-------------', instance)
+    })
+
+    console.log('这里是 props,context 的结果-------------', props,context)
     let a: number | undefined | null;
 
     function conSo(): void {
@@ -86,12 +111,14 @@ export default {
     }
     // 3.6箭头函数
 
+
+
     return {
       //d,
       a, b, c,arr, arr2,arr3,arr4,Err,errorT,func1,func2,getInfo,sum,getInfo2,getInfo3,
       conSo,
     }
-  }
+  },
 
 }
 </script>
