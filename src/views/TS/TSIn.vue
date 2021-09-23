@@ -111,6 +111,71 @@ export default {
     }
     // 3.6箭头函数
 
+    //类 类型接口
+
+    interface Man{
+      name:string;
+      age:number;
+      likeDo(things:string):void;
+    }
+    class Male implements Man{
+      age: number;
+      name: string;
+      constructor(age:number,name:string) {
+        this.age = age;
+        this.name = name;
+      }
+      likeDo(things: string): void {
+        console.log('这里是 男人喜欢做的事 的结果-------------', things)
+      }
+    }
+    //这里因为当一个类实现了一个接口时，只对其实例部分进行类型检查。
+    // constructor存在于类的静态部分，所以不在检查的范围内。
+    // 所有 你看多了以一个构造函数再有一个work参数完全不受影响
+
+    class Femal implements Man{
+      age: number;
+      name: string;
+      static work:string;
+      constructor(name:string,age:number,work:string) {
+        this.name = name;
+        this.age = age;
+      }
+      likeDo(things: string): void {
+        console.log('这里是 女人喜欢做的事情 的结果-------------', things)
+      }
+    }
+    let zhangsan = new Male(15,'张三');
+    let zhangsansWife = new Femal('张三的老婆',14,'teacher');
+    zhangsan.likeDo('玩游戏')
+    zhangsansWife.likeDo('叨叨张三玩游戏')
+
+    // 那么如何约束类的静态部分呢？
+    interface AnimalConstructor {
+      new (name:string,age:number):AnimalInterface;
+    }
+    interface AnimalInterface{
+      eat();
+    }
+
+    function createAnimal(ctor:AnimalConstructor,name:string,age:number):AnimalInterface{
+      return new ctor(name, age);
+    }
+
+    class  Cat implements AnimalInterface{
+      name:string;
+      age:number;
+      constructor(name:string,ag:number) {
+        this.name = name;
+        this.age = ag;
+      }
+      eat(): void {
+        console.log('这里是 小猫咪吃 的结果-------------', '小黄鱼')
+      }
+    }
+  let xiaohua =  new createAnimal(Cat,'小花',2)
+    xiaohua.eat();
+
 
 
     return {
