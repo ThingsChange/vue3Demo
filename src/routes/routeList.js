@@ -63,11 +63,15 @@ const routes = [{
                 component:CustomRef
             },
             {
+                path: 'lifeCycle',
+                name: 'LifeCycle',
+                component:LifeCycle
+            },
+            {
                 path: 'tsin',
                 name: 'TSIn',
                 component:TSIn
             },
-
         ],
     },
 ];

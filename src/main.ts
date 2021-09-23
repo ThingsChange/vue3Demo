@@ -2,7 +2,7 @@
 // @ts-ignore
 import Food from '@/common/BabelOptimize.js'
 
-console.log('这里是  的结果-----------', );;;
+console.log('这里是  的结果-----------', );
 import SvgIcon from "@/components/SvgIcon.vue";
 import {createApp} from 'vue'
 import Element3 from 'element3'
@@ -31,11 +31,11 @@ const myMixin = {
 }
 app.use(Storage);
 app.mixin({
-    methods: {
+/*    methods: {
         $axios2: axios,
         $hahha: function () {
         },
-    }
+    }*/
 })
 app.use(Element3);
 //第二种给全局实例挂载方法

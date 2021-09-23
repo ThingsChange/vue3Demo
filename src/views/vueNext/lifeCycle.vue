@@ -1,8 +1,18 @@
 <template>
   <div>
     <h1>lifecycle - 生命周期</h1>
-    <p>{{data.name}}</p>
-    <button @click="updateData">Update data</button>
+    <p>{{cao}}</p>
+    <button @click="updateData">Update data {{data.displaySurpriceInline}}</button>
+    <teleport v-if="showTeleport" to="#surprise" :disabled="data.displaySurpriceInline">
+      <div class="content">
+        <header>
+          {{data.name}}, 惊喜不？
+        </header>
+        <section>
+          给脸不要脸
+        </section>
+      </div>
+    </teleport>
   </div>
 </template>
 
@@ -21,6 +31,7 @@ import {
   // 新增的钩子函数
   onRenderTracked,
   onRenderTriggered,
+  computed, ref, getCurrentInstance
 } from "vue";
 
 export default {
@@ -30,6 +41,9 @@ export default {
       debugger; // eslint-disable-line
     });
     onMounted(() => {
+      console.log('这里是  的结果-------------', getCurrentInstance())
+      let  {ctx} = getCurrentInstance();
+      console.log('这里是 ctx 的结果-------------', ctx)
       debugger; // eslint-disable-line
     });
     onBeforeUpdate(() => {
@@ -50,12 +64,38 @@ export default {
     onRenderTriggered((e) => { // eslint-disable-line
       debugger; // eslint-disable-line
     });
-
-    const data = reactive({ name: "haihong" });
+    let a=Symbol.for(2)
+    const data = reactive({
+      name: "草",
+      [Symbol()]: 1,
+      [a]:2,
+      displaySurpriceInline:0
+    });
+    let showTeleport= ref(false)
     const updateData = () => {
+      data[a]=3
       data.name = "chen haiong" + new Date().toLocaleTimeString();
     };
-    return { data, updateData };
+    let cao = computed(()=>{
+      console.log('这里是 data 的结果-------------', data)
+      return Reflect.ownKeys(data)
+    })
+    return { data, updateData,cao,showTeleport};
   },
 };
 </script>
+<style lang="scss">
+.content{
+  background-color: #3de5fb;
+  position: absolute;
+  width: 70%;
+  height: 15vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+</style>

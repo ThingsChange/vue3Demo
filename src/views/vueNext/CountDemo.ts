@@ -1,4 +1,5 @@
-import {ref,reactive,computed} from 'vue'
+// @ts-ignore
+import {computed, reactive, ref} from 'vue'
 import useCount from './useCount'
 
 export default {

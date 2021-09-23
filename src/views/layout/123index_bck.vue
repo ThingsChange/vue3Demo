@@ -23,7 +23,7 @@
 </template>
 
 
-<script>
+<script lang="ts">
 import  menu from './menu.vue'
 import {defineComponent, PropType,getCurrentInstance ,inject} from 'vue'
 import {NavigationGuardNext, RouteLocationNormalized} from "vue-router";
@@ -31,13 +31,50 @@ import {NavigationGuardNext, RouteLocationNormalized} from "vue-router";
 // import  Login from '@/views/login/index.vue'
 const   _import  = require ('@/common/_import.js')
 
-export default {
+//class 风格
+interface ItemObj {
+  title: string;
+  content: string;
+  show: boolean;
+}
+
+interface Student{
+  name:string,
+  age:number,
+  isStudent:boolean,
+}
+
+
+export default defineComponent({
   name: 'Layout',
   props: {
     success: {type: String},
+    callback: {
+      type: Function as PropType<() => void>
+    },
+    student: {
+      type: Object as PropType<Student>,
+      required: true
+    }
   },
   data() {
     return {
+      menuItems: [{
+        title: "css",
+        content: "cssDemo",
+        show: true
+      },
+        {
+          title: "esLatest",
+          content: "esLatest",
+          show: true
+        },
+        {
+          title: "about",
+          content: "相关",
+          show: true
+        },
+      ],
       mcColor:'red',
       active: 0,
     }
@@ -45,6 +82,9 @@ export default {
   components:{"me-nu": menu},
   // components: { menu },
   computed: {
+    menuItemsLen(): number {
+      return this.menuItems.length
+    }
   },
   methods: {
     changeTheme(){
@@ -56,7 +96,7 @@ export default {
       window.document.documentElement.setAttribute('data-theme', dataTheme)
     },
     changeLanguage(){
-      let context  =this;
+      let context :any =this;
       context.$toggleLang();
     },
     addRouteAsync(){
@@ -74,7 +114,7 @@ export default {
     // console.log('这里是 $ss 1234 的结果-------------', $ss)
     // console.log('这里是 context 的结果-------------', context)
   },
-  beforeRouteEnter(to,from,next) {
+  beforeRouteEnter(to:RouteLocationNormalized,from:RouteLocationNormalized,next:NavigationGuardNext) {
     next((context)=>{
       // console.log('这里是 beforeRouteEnter 的结果-------------', context)
     });
@@ -91,7 +131,7 @@ export default {
   },
 
 
-}
+})
 
 </script>
 <style scoped lang="scss" >
