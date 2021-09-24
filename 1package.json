@@ -56,6 +56,13 @@
       "pre-commit": "lint-staged"
     }
   },
+  //  "lint-staged": {
+  //    "*{.ts,.js}": [
+  //      "eslint --ext .tsx,.ts --fix ./src",
+  //      "prettier --write",
+  //      "git add"
+  //    ]
+  //  },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
   },
@@ -74,9 +81,5 @@
     },
     "rules": {}
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+  "browserslist": ["> 1%", "last 2 versions", "not dead"]
 }
