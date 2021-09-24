@@ -19,6 +19,7 @@ export const routeConfig = [
             { id: '1-7', path: '/qy/lifeCycle', text: 'lifeCycle' },
             { id: '1-8', path: '/qy/cleanUP', text: 'cleanUP' },
             { id: '1-17', path: '/qy/TSIn', text: 'TSIn' },
+            { id: '1-18', path: '/qy/TSClass', text: 'TS中的class' },
         ],
     },
     {

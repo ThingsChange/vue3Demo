@@ -217,16 +217,25 @@ abc = undefined;*/
         }
 
         class Male implements Man {
-            age: number
             name: string
-
-            constructor(age: number, name: string) {
-                this.age = age
+            static hornor: string
+            private handSome: string
+            constructor(public age: number, name: string) {
                 this.name = name
+                this.handSome = '帅气'
             }
 
             likeDo(things: string): void {
                 console.log('这里是 男人喜欢做的事 的结果-------------', things)
+                console.log(
+                    '这里是   this.handSome  ------------',
+                    this.handSome
+                )
+                console.log(
+                    '这里是 this.age,this.name 的结果-------------',
+                    this.age,
+                    this.name
+                )
             }
         }
 
