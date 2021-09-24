@@ -244,7 +244,7 @@ export default {
         console.log("这里是 女人喜欢做的事情 的结果-------------", things);
       }
     }
-
+    var a = 123;
     let zhangsan = new Male(15, "张三");
     let zhangsansWife = new Femal("张三的老婆", 14, "teacher");
     zhangsan.likeDo("玩游戏");
