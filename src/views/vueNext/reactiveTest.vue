@@ -3,6 +3,12 @@
   </div>-->
 
   <reactiveDetail :msg="'12'" :title="title" :location2="location" :geolocation="geolocation"></reactiveDetail>
+<div>
+  <span>{{shallowPerson.status}}</span>
+  <span>{{shallowPerson.basic}}</span>
+  <span>{{shallowReadlyPerson.basic}}</span>
+</div>
+  <button class="liti-button"  @click="changePerson">修改用户信息</button>
 
   <!--  <div>{{ msg }}</div>
     <div>{{ msg2 }}</div>
@@ -39,7 +45,9 @@ import {
   ref,
   toRefs,
   readonly,
-  provide
+  provide,
+  shallowReactive, onMounted, getCurrentInstance,
+  shallowReadonly
 } from 'vue'
 // import (/* webpackChunkName: "reactiveDetail" */'@v/vueNext/reactiveDetail.vue')
 
@@ -94,13 +102,35 @@ export default defineComponent({
     }
   },
   setup(){
-    let person = reactive({
+    let originalPerson = {
       status:'tired',
       basic:{
         name:'1',
-        age:2
+        age:2,
+        x:{
+          y:0
+        }
       }
-    })
+    };
+    let person = reactive(originalPerson)
+    let shallowPerson = shallowReactive(originalPerson)
+    let shallowReadlyPerson = shallowReadonly(originalPerson);
+    console.log('这里是   isReactive(shallowPerson.basic)  ------------', isReactive(shallowPerson.basic))
+    console.log('这里是   shallowPerson.basic === originalPerson.basic  ------------', shallowPerson.basic === originalPerson.basic)
+    function changePerson() {
+      shallowPerson.status = 'happy';
+      shallowPerson.basic.age++;
+      // shallowPerson.basic.x.y++;
+      shallowReadlyPerson.basic.age++;
+      // shallowReadlyPerson.status = 'happy';
+      console.log('这里是   originalPerson  ------------', originalPerson)
+    }
+
+onMounted(()=>{
+  let instance = getCurrentInstance()
+  console.log('这里是 instance 的结果-------------', instance)
+})
+
     let b=ref(12);
     let  changeStatus = function(){
       person.status='happy'
@@ -142,13 +172,16 @@ export default defineComponent({
 
     return {
       person,
+      shallowPerson,
       changeStatus,
       b,
       food,
       testReadOnly,
       geolocation,
       title,
-      location
+      location,
+      changePerson,
+      shallowReadlyPerson
     }
   }
 })
