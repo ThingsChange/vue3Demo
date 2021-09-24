@@ -29,13 +29,13 @@ export default {
     name: 'TSIn',
     setup(props: any, context: any) {
         /*
-        let instance = getCurrentInstance();
+let instance = getCurrentInstance();
 
 
-        onMounted(()=>{
-          console.log('这里是 root1 的结果-------------', instance)
-        })
-    */
+onMounted(()=>{
+  console.log('这里是 root1 的结果-------------', instance)
+})
+*/
 
         console.log('这里是 props,context 的结果-------------', props, context)
         let a: number | undefined | null
@@ -47,7 +47,7 @@ export default {
         }
 
         /*  let abc :number =11;
-        abc = undefined;*/
+abc = undefined;*/
         //  never类型，是其他类型（包括null  和undefined）的子类型，代表从不会出现的值，
         //  这意味着never类型变量只能有never类型的值赋值
         let b: undefined
@@ -57,8 +57,8 @@ export default {
         // let d: never;
         //这样有个蛋用，这个地方可以用any来代替
         /*      d = (() => {
-            throw  new Error('傻逼设计2啊')
-          })();*/
+    throw  new Error('傻逼设计2啊')
+  })();*/
         //数组类型
         let arr: number[] = [1, 2, 3]
         // 数组类型2
@@ -88,13 +88,13 @@ export default {
         }
         //3.1 ts中定义方法传参
         /*    function  getInfo(name:string,age:number):string{
-            return  `${name}年龄${age}`
-        }*/
+    return  `${name}年龄${age}`
+}*/
         //3.2 可选参数   必须配置在最后边
         //es5中形参和实参可以不一样，但是在typescripte中必须一样，如果不一样，那么就要配置可选参数
         /*    function  getInfo(name:string,age?:number):string{
-          return  `${name}年龄${age?age:'保密'}`
-        }*/
+  return  `${name}年龄${age?age:'保密'}`
+}*/
 
         //3.3 默认参数
         function getInfo(name: string, age: number = 20): string {
@@ -251,8 +251,8 @@ export default {
                 )
             }
         }
-        var a = 123
-        var aaaa = 123
+
+        var d = 1234
         let zhangsan = new Male(15, '张三')
         let zhangsansWife = new Femal('张三的老婆', 14, 'teacher')
         zhangsan.likeDo('玩游戏')
@@ -377,6 +377,9 @@ export default {
         console.log('这里是   strLength  ------------', strLength)
         let strLength2: number = (someValue as string).length
         console.log('这里是   strLength2  ------------', strLength2)
+        let fucd = (a: any) => {
+            console.log('这里是 123 的结果-------------', a)
+        }
         return {
             //d,
             a,
