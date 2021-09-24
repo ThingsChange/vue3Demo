@@ -14,15 +14,11 @@ module.exports = {
         'plugin:prettier/recommended',*/
         // 'plugin:vue/essential',
         // 'plugin:vue/strongly-recommended',
-        // 'prettier',
-        'plugin:vue/vue3-essential',
+        // 'plugin:vue/vue3-essential',
         // 'eslint:recommended',
-        'prettier',
         'plugin:prettier/recommended',
     ],
-    rules: {
-        // 'prettier/prettier': 'error',
-    },
+    rules: {},
     parserOptions: {
         parser: 'babel-eslint',
     },
