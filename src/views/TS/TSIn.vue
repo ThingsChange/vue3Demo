@@ -252,6 +252,7 @@ export default {
             }
         }
         var a = 123
+        var aaaa = 123
         let zhangsan = new Male(15, '张三')
         let zhangsansWife = new Femal('张三的老婆', 14, 'teacher')
         zhangsan.likeDo('玩游戏')
