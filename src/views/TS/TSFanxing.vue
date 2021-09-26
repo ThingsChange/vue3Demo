@@ -107,7 +107,11 @@ export default {
             y
         ) => x + y
         myAdd(1, 2)
-
+        function loggingIndentity<T>(arg: Array<T>): T[] {
+            console.log('这里是 arg.length 的结果-------------', arg.length)
+            return arg
+        }
+        loggingIndentity([1234, 123, 12, 1])
         return { zhangSan, liSi }
     },
 }

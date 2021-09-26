@@ -19,14 +19,14 @@ const LifeCycle = () =>
     import(/* webpackChunkName: "LifeCycle" */ '@v/vueNext/lifeCycle')
 const TSIn = () => import(/* webpackChunkName: "TSStudy" */ '@v/TS/TSIn')
 const TSClass = () => import(/* webpackChunkName: "TSStudy" */ '@v/TS/TSClass')
+const TSFanxing = () =>
+    import(/* webpackChunkName: "TSStudy" */ '@v/TS/TSFanxing')
 const cleanUP = () =>
     import(/* webpackChunkName: "LifeCycle" */ '@v/vueNext/cleanUP')
 
 // 404
 const NotFound = () =>
     import(/* webpackChunkName: "NotFound" */ '@c/ErrorPage/NotFound')
-// 快应用落地页
-// const Login = () => import(/* webpackChunkName: "Login" */ '@v/login/index');
 
 const routes = [
     {
@@ -90,6 +90,11 @@ const routes = [
                 path: 'tsclass',
                 name: 'TSClass',
                 component: TSClass,
+            },
+            {
+                path: 'tsfanxing',
+                name: 'TSFanxing',
+                component: TSFanxing,
             },
             {
                 path: 'cleanUP',

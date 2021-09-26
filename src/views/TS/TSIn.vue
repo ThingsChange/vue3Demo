@@ -97,7 +97,7 @@ abc = undefined;*/
 }*/
 
         //3.3 默认参数
-        function getInfo(name: string, age: number = 20): string {
+        function getInfo(name: string, age = 20): string {
             return `${name}年龄${age}`
         }
 
@@ -120,10 +120,17 @@ abc = undefined;*/
 
         function getInfo3(name: string): string
         function getInfo3(name: string, age: number): number
-        function getInfo3(name: string, age?: any): any {
-            if (typeof name === 'string') return '我是' + name
-            else return age
+        function getInfo3(name: string, age?: any): string | number {
+            if (typeof age === 'number')
+                return '我是' + name + ',今年' + age + '岁'
+            else return '你大爷已经不是当年的大爷了'
         }
+
+        console.log(
+            '这里是   getInfo3("你大爷", 30)  ------------',
+            getInfo3('你大爷', 30)
+        )
+        console.log('这里是   getInfo3("asd")  ------------', getInfo3('asd'))
 
         // 3.6箭头函数
 
@@ -132,7 +139,6 @@ abc = undefined;*/
             pageNo?: number
             readonly version: string
             content: ReadonlyArray<string>
-
             [propName: string]:
                 | string
                 | number
@@ -261,6 +267,12 @@ abc = undefined;*/
             }
         }
 
+        // class Femal2 implements Man {
+        //     age: number
+        //     name: string
+        //
+        //     likeDo(things: string): void {}
+        // }
         var d = 1234
         let zhangsan = new Male(15, '张三')
         let zhangsansWife = new Femal('张三的老婆', 14, 'teacher')
@@ -382,8 +394,8 @@ abc = undefined;*/
         printCar120(jiuhuche)
 
         let someValue: any = '你大爷还是你大爷'
-        let strLength: number = (<string>someValue).length
-        console.log('这里是   strLength  ------------', strLength)
+        // let strLength: number = (<string>someValue).length
+        // console.log('这里是   strLength  ------------', strLength)
         let strLength2: number = (someValue as string).length
         console.log('这里是   strLength2  ------------', strLength2)
         let fucd = (a: any) => {
