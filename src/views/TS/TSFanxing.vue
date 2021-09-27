@@ -8,7 +8,7 @@
 // import {getCurrentInstance, onMounted} from 'vue'
 
 export default {
-    name: 'TSClass',
+    name: 'TSFaning',
     setup(props: any, context: any) {
         interface Person {
             name: string
@@ -112,6 +112,112 @@ export default {
             return arg
         }
         loggingIndentity([1234, 123, 12, 1])
+        let myLog = function <T>(arg: T[]): T[] {
+            console.log('这里是 arg.length 的结果-------------', arg.length)
+            return arg
+        }
+        let myLog2: <T>(arg: T[]) => T[] = myLog
+        //类型
+        let myLog3: typeof myLog = function <T>(arr: T[]): T[] {
+            return arr
+        }
+        //带有调用签名的对象字面量来定义泛型函数
+        let myLog4: { <T>(arr: T[]): T[] } = myLog
+        console.log('这里是   myLog3([1,2,3])  ------------', myLog3([1, 2, 3]))
+        //泛型接口
+        interface GenericIdentityFnTest {
+            <T>(arg: T[]): T[]
+            // <U>(a: U): U
+        }
+        interface GenericIdentityFn<T> {
+            <T>(arg: T[]): T[]
+        }
+        function indentify<T>(arg: Array<T>): T[] {
+            console.log(arg.length)
+            console.log(arg.join())
+            return arg.map(v => v)
+        }
+        function indentifyString<T>(arg: Array<T>): T[] {
+            console.log(arg.length)
+            console.log(arg.join())
+            return arg.map(v => (v + '000') as unknown as T)
+        }
+        let myIndentify: GenericIdentityFn<number> = indentify
+        let myIndentify2: GenericIdentityFn<string> = indentifyString
+        console.log(
+            '这里是   myIndentify([1,2,3,4,5,6])  ------------',
+            myIndentify([1, 2, 3, 4, 5, 6])
+        )
+        let a: string[] = ['1', '2', '3', '4', '5']
+        console.log('这里是   myIndentify2(a)  ------------', myIndentify2(a))
+
+        //，类有两部分：静态部分和实例部分。 泛型类指的是实例部分的类型，所以类的静态属性不能使用这个泛型类型。
+        class People<T> {
+            name!: T
+            add!: (x: T, y: T) => T
+        }
+
+        let ar = new People<string>()
+        ar.name = '特朗普'
+        ar.add = function (x, y) {
+            return x + y
+        }
+        console.log(
+            '这里是   ar.add("川","建国")  ------2------',
+            ar.add('川', '建国')
+        )
+
+        /*
+         * 泛型约束
+         * */
+
+        interface Lengwise {
+            length: number
+        }
+        function LogLength<T extends Lengwise>(arg: T): T {
+            console.log('这里是 arg.length 的结果-------------', arg.length)
+            return arg
+        }
+
+        console.log('这里是   LogLength(a)  ------------', LogLength(a))
+        // LogLength(3)
+        console.log(
+            '这里是   LogLength({length:3})  ------------',
+            LogLength({ length: 3 })
+        )
+        /*
+         * 在泛型约束中使用类型参数
+         *
+         * */
+
+        //T继承U，这样就保证了U上面不会出现T中不存在的字段
+        function copyFields<T extends U, U>(target: T, source: U): T {
+            for (let id in source) {
+                target[id] = (source as T)[id]
+            }
+            return target
+        }
+
+        let x = { a: 1, b: 2, c: 3, d: 4 }
+
+        console.log(
+            '这里是   copyFields(x, { b: 10, d: 20 })  ------------',
+            // copyFields(x, { b: 10, d: 20, f: 30 })
+            copyFields(x, { b: 10, d: 20 })
+        )
+
+        /*
+        // eslint-disable-next-line @typescript-eslint/ban-types
+        function getProperty(obj: object, key: string) {
+            return obj[key]
+        }
+
+        let x = { a: 1, b: 2, c: 3, d: 4 }
+
+        getProperty(x, 'a') // okay
+        getProperty(x, 'm') // error: Argument of type 'm' isn't assignable to 'a' | 'b' | 'c' | 'd'.
+*/
+
         return { zhangSan, liSi }
     },
 }

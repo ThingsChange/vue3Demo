@@ -41,12 +41,21 @@ export default {
     },
     methods: {
         selectMenu(data) {
+            console.log('这里是   data  ------------', data)
             let firstMenum = data.slice(0, data.indexOf('-'))
+            console.log('这里是   firstMenum  ------------', firstMenum)
             let toUrl = ''
             console.log(1234)
             this.routeConfig.filter(v => {
-                if (v.id === firstMenum) {
+                console.log(
+                    '这里是   v.id===firstMenum  ------------',
+                    v.id == firstMenum,
+                    v.id,
+                    firstMenum
+                )
+                if (v.id == firstMenum) {
                     v.child.filter(x => {
+                        console.log('这里是   x.id  ------------', x.id)
                         if (x.id === data) {
                             toUrl = x.path
                         }
