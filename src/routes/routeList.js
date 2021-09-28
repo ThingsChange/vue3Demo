@@ -20,6 +20,7 @@ const LifeCycle = () =>
 const TSIn = () => import(/* webpackChunkName: "TSStudy" */ '@v/TS/TSIn')
 const TSClass = () => import(/* webpackChunkName: "TSStudy" */ '@v/TS/TSClass')
 const TSEnum = () => import(/* webpackChunkName: "TSStudy" */ '@v/TS/TSEnum')
+const TS变 = () => import(/* webpackChunkName: "TSStudy" */ '@v/TS/TS变')
 const TSFanxing = () =>
     import(/* webpackChunkName: "TSStudy" */ '@v/TS/TSFanxing')
 const cleanUP = () =>
@@ -178,6 +179,14 @@ const routes = [
                 component: TSEnum,
                 meta: {
                     text: 'TS中的枚举',
+                },
+            },
+            {
+                path: 'bian',
+                name: 'TS变',
+                component: TS变,
+                meta: {
+                    text: '协变、逆变',
                 },
             },
         ],
