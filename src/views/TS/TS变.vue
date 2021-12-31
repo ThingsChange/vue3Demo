@@ -50,6 +50,8 @@ export default {
 
         foo(new Jizhui())
         foo(new BuRu())
+        //* 协变例子2
+        type Xiebian<T> = T[]
 
         //! 逆变  Contravariant --strictFunctionTypes true |false 无关紧要
         type nibian<T> = (p: T) => void
@@ -70,7 +72,10 @@ export default {
             console.log('这里是 x 的结果-------------', x)
         }
         subType1 = superType1
-        superType1 = subType1
+        // superType1 = subType1
+
+        //! 不变  --strictFunctionTypes true
+        // type Invariant<T> = {a:Jizhui<T>,b:}
 
         /*strictFunctionTypes
          当开启的时候，ts 会严格比较函数的类型，指的是参数类型，不包含返回值类型。
@@ -99,6 +104,30 @@ export default {
         type parentToParent = (v: Animal) => Animal
         let aaaa4: parentToParent = v => new Animal()
         exec(aaaa4)*/
+
+        class Singleton {
+            private static instance: Singleton
+            private constructor() {
+                console.log('这里是 123 的结果-------------', 123)
+            }
+            public static getIntance() {
+                if (!Singleton.instance) {
+                    Singleton.instance = new Singleton()
+                }
+                return Singleton.instance
+            }
+            someMethod() {
+                console.log('这里是 123 的结果-------------', 123)
+            }
+        }
+        //! Error TS2673: Constructor of class 'Singleton' is private and only accessible within the class declaration.
+        // let someThing = new Singleton();
+
+        const instance = Singleton.getIntance()
+        console.log(
+            '这里是 instance 的结果-------------',
+            instance.someMethod()
+        )
 
         return {}
     },
