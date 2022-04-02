@@ -37,7 +37,6 @@ app.mixin({
     }*/
 })
 
-
 app.use(Element3)
 //第二种给全局实例挂载方法
 app.use(i18n)

@@ -5,11 +5,11 @@
  * @note 干什么的呢？
  **/
 
-class Food{
+class Food {
     constructor(fd) {
-        this.foodName=fd.foodName
-        this.units=fd.units
-        this.unitKey=fd.unitKey
+        this.foodName = fd.foodName
+        this.units = fd.units
+        this.unitKey = fd.unitKey
     }
 }
-export  default  Food;
+export default Food

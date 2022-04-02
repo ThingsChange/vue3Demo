@@ -1,34 +1,23 @@
 const LayOut = () => import(/* webpackChunkName: "Layout" */ '@v/layout')
-const Animation = () =>
-    import(/* webpackChunkName: "Animation" */ '@v/cssStudy/animation')
-const Communicate = () =>
-    import(/* webpackChunkName: "Communicate" */ '@v/communicate/index')
-const Reactive = () =>
-    import(/* webpackChunkName: "reactive" */ '@v/vueNext/reactiveTest')
-const ReactiveDetail = () =>
-    import(/* webpackChunkName: "reactiveDetail" */ '@v/vueNext/reactiveDetail')
-const CompostionApi = () =>
-    import(/* webpackChunkName: "Communicate" */ '@v/vueNext/compostionApi')
-const ToRef = () =>
-    import(/* webpackChunkName: "Communicate" */ '@v/vueNext/toRef')
-const Effect = () =>
-    import(/* webpackChunkName: "effect" */ '@v/vueNext/effectTest')
-const CustomRef = () =>
-    import(/* webpackChunkName: "CustomRef" */ '@v/vueNext/customRef')
-const LifeCycle = () =>
-    import(/* webpackChunkName: "LifeCycle" */ '@v/vueNext/lifeCycle')
+const Animation = () => import(/* webpackChunkName: "Animation" */ '@v/cssStudy/animation')
+const Communicate = () => import(/* webpackChunkName: "Communicate" */ '@v/communicate/index')
+const Reactive = () => import(/* webpackChunkName: "reactive" */ '@v/vueNext/reactiveTest')
+const ReactiveDetail = () => import(/* webpackChunkName: "reactiveDetail" */ '@v/vueNext/reactiveDetail')
+const CompostionApi = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/compostionApi')
+const ToRef = () => import(/* webpackChunkName: "Communicate" */ '@v/vueNext/toRef')
+const Effect = () => import(/* webpackChunkName: "effect" */ '@v/vueNext/effectTest')
+const CustomRef = () => import(/* webpackChunkName: "CustomRef" */ '@v/vueNext/customRef')
+const LifeCycle = () => import(/* webpackChunkName: "LifeCycle" */ '@v/vueNext/lifeCycle')
 const TSIn = () => import(/* webpackChunkName: "TSStudy" */ '@v/TS/TSIn')
 const TSClass = () => import(/* webpackChunkName: "TSStudy" */ '@v/TS/TSClass')
 const TSEnum = () => import(/* webpackChunkName: "TSStudy" */ '@v/TS/TSEnum')
 const TS变 = () => import(/* webpackChunkName: "TSStudy" */ '@v/TS/TS变')
-const TSFanxing = () =>
-    import(/* webpackChunkName: "TSStudy" */ '@v/TS/TSFanxing')
-const cleanUP = () =>
-    import(/* webpackChunkName: "LifeCycle" */ '@v/vueNext/cleanUP')
+const TSFanxing = () => import(/* webpackChunkName: "TSStudy" */ '@v/TS/TSFanxing')
+const cleanUP = () => import(/* webpackChunkName: "LifeCycle" */ '@v/vueNext/cleanUP')
+const watch相关 = () => import(/* webpackChunkName: "LifeCycle" */ '@v/vueNext/watch相关')
 
 // 404
-const NotFound = () =>
-    import(/* webpackChunkName: "NotFound" */ '@c/ErrorPage/NotFound')
+const NotFound = () => import(/* webpackChunkName: "NotFound" */ '@c/ErrorPage/NotFound')
 
 const routes = [
     {
@@ -102,6 +91,14 @@ const routes = [
                 component: cleanUP,
                 meta: {
                     text: '组合toRef',
+                },
+            },
+            {
+                path: 'watch',
+                name: 'watch相关',
+                component: watch相关,
+                meta: {
+                    text: 'watch相关',
                 },
             },
         ],

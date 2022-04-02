@@ -1,16 +1,11 @@
 <template>
-      <div>
-        人的本性不会变得。
-      </div>
+    <div>人的本性不会变得。</div>
 </template>
 
-
-<script >
+<script>
 export default {
-  name: "reactiveChild"
+    name: 'reactiveChild',
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,19 +1,19 @@
 // @ts-ignore
-import {ref, Ref, watch} from 'vue'
+import { ref, Ref, watch } from 'vue'
 interface Range {
-    min?: number,
+    min?: number
     max?: number
 }
 
 interface Result {
-    current: Ref<number>,
-    inc: (delta?: number) => void,
-    dec: (delta?: number) => void,
-    set: (value: number) => void,
+    current: Ref<number>
+    inc: (delta?: number) => void
+    dec: (delta?: number) => void
+    set: (value: number) => void
     reset: () => void
 }
 
-export  default  function useCount(initialVal: number, range?: Range): Result {
+export default function useCount(initialVal: number, range?: Range): Result {
     const current = ref(initialVal)
     const inc = (delta?: number): void => {
         if (typeof delta === 'number') {
@@ -50,6 +50,6 @@ export  default  function useCount(initialVal: number, range?: Range): Result {
         inc,
         dec,
         set,
-        reset
+        reset,
     }
 }

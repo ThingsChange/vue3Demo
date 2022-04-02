@@ -8,16 +8,16 @@
 
 import axios from 'axios'
 const login = {
-  login: (name, pwd) => {
-    // let loginInfo = Base64.encode(name + ':' + pwd)
-    return axios({
-      method: 'post',
-      url: `/qyTest/login`,
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest'
-      },
-      data: { name, pwd }
-    })
-  }
+    login: (name, pwd) => {
+        // let loginInfo = Base64.encode(name + ':' + pwd)
+        return axios({
+            method: 'post',
+            url: `/qyTest/login`,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+            },
+            data: { name, pwd },
+        })
+    },
 }
 export default login

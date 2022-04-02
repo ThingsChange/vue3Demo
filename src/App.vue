@@ -1,47 +1,45 @@
 <template>
-  <section>
-    <router-view/>
-  </section>
-  <div id="surprise" v-if="a"></div>
+    <section>
+        <router-view />
+    </section>
+    <div id="surprise" v-if="a"></div>
 </template>
 
 <script>
-import {Options, Vue} from 'vue-class-component';
+import { Options, Vue } from 'vue-class-component'
 // import { Component } from 'vue-property-decorator'
 // import HelloWorld from './components/HelloWorld.vue';
-import {reactive, toRefs, provide, useCssVars} from 'vue'
-import {NavigationGuardNext, RouteLocationNormalized} from "vue-router";
+import { reactive, toRefs, provide, useCssVars } from 'vue'
+import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
 // import {getStorage} from "@/plugins/storage";
-function getStorage(){
-
-}
+function getStorage() {}
 // or
 // @ts-ignore
 // import   '@a/yanhua.js'
 export default {
-  components: {
-    // HelloWorld,
-  },
-  data() {
-    return {
-      a:false,
-      items: [1, 2, 3],
-      color:'red'
-    }
-  },
-  setup() {
-    useCssVars((_ctx)=>({
-      color:_ctx.color
-    }))
-    //定义接口类型
-    /*    interface ItemObj {
+    components: {
+        // HelloWorld,
+    },
+    data() {
+        return {
+            a: false,
+            items: [1, 2, 3],
+            color: 'red',
+        }
+    },
+    setup() {
+        useCssVars(_ctx => ({
+            color: _ctx.color,
+        }))
+        //定义接口类型
+        /*    interface ItemObj {
           title: string;
           content: string;
           show: boolean;
         }*/
-    provide('$ss', getStorage(sessionStorage))
-    provide('$ls', getStorage(localStorage))
-    /*    const data = reactive({
+        provide('$ss', getStorage(sessionStorage))
+        provide('$ls', getStorage(localStorage))
+        /*    const data = reactive({
           items: [{
             title: "css",
             content: "cssDemo",
@@ -72,43 +70,42 @@ export default {
         return {
           ...toRefs(data)
         }*/
-  },
+    },
 }
 
 /*export default class App extends Vue {
 }*/
 </script>
 
-
 <style lang="scss">
 @import './assets/css/color.scss';
 //@import "./assets/css/common.scss";
 
 body {
-  margin: 0;
+    margin: 0;
 }
 /*:root{
   --mc-color: v-bind(color);
 }*/
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
 }
 
-#surprise{
-  position: absolute;
-  width: 100%;
-  top: 0;
-  bottom: 0;
-  background: rgba(0,0,0,.6);
+#surprise {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
 }
 .icon-date {
-  width: 3rem !important;
-  height: 3rem !important;
-  color: blue
+    width: 3rem !important;
+    height: 3rem !important;
+    color: blue;
 }
 </style>

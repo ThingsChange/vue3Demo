@@ -6,10 +6,10 @@
  **/
 
 module.exports = {
-    layout:{
-        tomorrow:'明天',
+    layout: {
+        tomorrow: '明天',
     },
-    cssStudy:{
-        style:'样式'
-    }
+    cssStudy: {
+        style: '样式',
+    },
 }

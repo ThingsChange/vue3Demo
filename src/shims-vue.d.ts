@@ -1,13 +1,11 @@
 declare module '*.vue' {
-  import type { DefineComponent } from 'vue'
-  const component: DefineComponent<{}, {}, any>
-    const $abcd:any
-  export default component
+    import type { DefineComponent } from 'vue'
+    const component: DefineComponent<{}, {}, any>
+    const $abcd: any
+    export default component
 }
 
-
-
-declare  module  'element3'
+declare module 'element3'
 /*
 declare module '*.vue' {
     import Vue from 'vue';
@@ -15,15 +13,15 @@ declare module '*.vue' {
 }
 */
 
-declare module "vue/types/vue" {
-    import VueRouter, { Route } from 'vue-router';
+declare module 'vue/types/vue' {
+    import VueRouter, { Route } from 'vue-router'
     interface Vue {
-        $router: VueRouter; // 这表示this下有这个东西
-        $route: Route;
-        $http: any;
-        $Message: any;
-        $Modal: any;
-        $abc:any
+        $router: VueRouter // 这表示this下有这个东西
+        $route: Route
+        $http: any
+        $Message: any
+        $Modal: any
+        $abc: any
     }
 }
 

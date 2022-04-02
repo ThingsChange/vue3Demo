@@ -47,15 +47,15 @@ export default {
             let toUrl = ''
             console.log(1234)
             this.routeConfig.filter(v => {
-                console.log(
+                /*                console.log(
                     '这里是   v.id===firstMenum  ------------',
                     v.id == firstMenum,
                     v.id,
                     firstMenum
-                )
+                )*/
                 if (v.id == firstMenum) {
                     v.child.filter(x => {
-                        console.log('这里是   x.id  ------------', x.id)
+                        console.log('这里是   x.id  ------------', x.id) /**/
                         if (x.id === data) {
                             toUrl = x.path
                         }

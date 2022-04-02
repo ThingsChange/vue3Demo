@@ -5,7 +5,7 @@
  * @note 干什么的呢？
  **/
 
-module.exports = file =>{
+module.exports = file => {
     console.log('这里是 file 的结果-------------', file)
-    return import('@v/'+file);
+    return import('@v/' + file)
 }
