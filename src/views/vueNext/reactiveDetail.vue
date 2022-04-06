@@ -52,15 +52,11 @@ export default {
         let { location2: location3, geolocation: geolocation3 } = props
 
         let ab = toRef(props, 'ab')
-        console.log('这里是   pp  ------------', pp, location3, ab)
-        console.log('这里是   props.title  ------------', props.title)
+        // console.log('这里是   pp  ------------', pp, location3, ab)
+        // console.log('这里是   props.title  ------------', props.title)
         const location = inject('location', '北京市')
         const userGeolocation = inject('geolocation')
-        console.log(
-            '这里是 getLocation 的结果-------------',
-            userGeolocation,
-            location
-        )
+        console.log('这里是 getLocation 的结果-------------', userGeolocation, location)
         const updateLocation = inject('updateLocation')
         /*    const  updateLocation = function (){
       userGeolocation .latitude = '110'

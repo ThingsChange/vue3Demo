@@ -10,18 +10,9 @@
             text-color="#fff"
             active-text-color="#ffd04b"
         >
-            <el-submenu
-                v-for="(item, index) in routeConfig"
-                :index="item.id"
-                :key="index"
-            >
+            <el-submenu v-for="(item, index) in routeConfig" :index="item.id" :key="index">
                 <template v-slot:title>{{ item.text }}</template>
-                <el-menu-item
-                    v-for="(secondItem, index) in item.child"
-                    :index="secondItem.id"
-                    :key="index"
-                    >{{ secondItem.text }}</el-menu-item
-                >
+                <el-menu-item v-for="(secondItem, index) in item.child" :index="secondItem.id" :key="index">{{ secondItem.text }}</el-menu-item>
             </el-submenu>
         </el-menu>
     </el-row>
@@ -55,7 +46,7 @@ export default {
                 )*/
                 if (v.id == firstMenum) {
                     v.child.filter(x => {
-                        console.log('这里是   x.id  ------------', x.id) /**/
+                        // console.log('这里是   x.id  ------------', x.id) /**/
                         if (x.id === data) {
                             toUrl = x.path
                         }

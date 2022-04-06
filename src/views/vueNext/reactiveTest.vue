@@ -38,6 +38,9 @@
     <div>
         <async-com :person="person" v-if="showAsync"></async-com>
     </div>
+    <div>
+        <p v-for="(g, index) in grade" :key="index">{{ g }}年级</p>
+    </div>
 </template>
 <script>
 import {
@@ -60,12 +63,7 @@ import {
 
 import CountDemo from '@/views/vueNext/CountDemo'
 import reactiveDetail from '@/views/vueNext/reactiveDetail'
-
-import(
-    /*  webpackPrefetch: true */
-    /* webpackChunkName: "HelloWorld" */
-    './../../components/HelloWorld.vue'
-)
+import LoadingAnimate from '@/components/Loading/LoadingAnimate'
 
 /*interface Student {
   name: string
@@ -85,10 +83,25 @@ export default defineComponent({
     components: {
         reactiveDetail,
         'async-com': defineAsyncComponent({
-            delay: 50000,
+            delay: 1000,
             timeout: 3000,
-            loader: () => import(/* webpackChunkName: "HelloWorld" */ './../../components/HelloWorld.vue'),
+            loadingComponent: LoadingAnimate,
+            loader: () =>
+                import(
+                    /*  webpackPrefetch: true */
+                    /* webpackChunkName: "HelloWorld" */
+                    './../../components/HelloWorld.vue'
+                ),
         }),
+        //标准写法
+        /*
+        'async-com': defineAsyncComponent({
+            delay: 1000,
+            timeout: 3000,
+            loadingComponent: LoadingAnimate,
+            loader: () => import('./../../components/HelloWorld.vue'),
+        }),
+*/
     },
     methods: {
         addA() {
@@ -182,6 +195,8 @@ export default defineComponent({
 
         const title = '这里是详情组件'
 
+        let grade = reactive(new Set([1, 2, 3, 4, 5]))
+        console.log('这里是   grade  ------------', grade)
         return {
             person,
             shallowPerson,
@@ -196,6 +211,7 @@ export default defineComponent({
             shallowReadlyPerson,
             readlyPerson,
             personStatusKaixin,
+            grade,
         }
     },
 })

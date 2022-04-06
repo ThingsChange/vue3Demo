@@ -31,6 +31,7 @@ export default {
                 console.log('这里是   newVal,oldVal  ------------', newVal, oldVal)
                 console.log('这里是   obj.text  ------------', obj.text)
                 console.log('这里是   innerText  ------------', innerText)
+                obj.count++
             },
             {
                 flush: 'pre',
