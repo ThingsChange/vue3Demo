@@ -34,7 +34,7 @@
 // import cssObj from '@/assets/css/var-dark.scss'
 //
 // console.log('这里是 cssObj 的结果-------------', cssObj)
-import { inject, toRefs, toRef } from 'vue'
+import { inject, toRefs, toRef, getCurrentInstance, onMounted, computed } from 'vue'
 
 export default {
     methods: {
@@ -42,33 +42,50 @@ export default {
             window.location.reload()
         },
     },
-    props: ['title', 'msg', 'location2', 'geolocation', 'abc'],
-    setup(props, context) {
-        console.log('这里是   props,context  ------------', props, context)
-        console.log('这里是   context.attrs  ------------', context.attrs)
+    setup(props, { attrs }) {
+        // console.log('这里是   props  ------------', props)
+        // console.log('这里是   props,context  ------------', props, context)
+        // console.log('这里是   context.attrs  ------------', attrs)
         //这样结构可以响应式
         let pp = toRefs(props)
         //而下面的ES6的方式去不是响应式(至于geolocation为啥是响应式，因为他解构出来的值依旧是一个响应式的对象
         let { location2: location3, geolocation: geolocation3 } = props
 
         let ab = toRef(props, 'ab')
+        let abc = getCurrentInstance().refs['haha']
+        // console.log('这里是   abc  ------------', getCurrentInstance(), getCurrentInstance().parent.refs['haha'])
         // console.log('这里是   pp  ------------', pp, location3, ab)
         // console.log('这里是   props.title  ------------', props.title)
         const location = inject('location', '北京市')
         const userGeolocation = inject('geolocation')
-        console.log('这里是 getLocation 的结果-------------', userGeolocation, location)
+        // console.log('这里是 getLocation 的结果-------------', userGeolocation, location)
         const updateLocation = inject('updateLocation')
+        // let add = computed(() => {
+        //     return context.attrs
+        // })
         /*    const  updateLocation = function (){
       userGeolocation .latitude = '110'
       userGeolocation .longitude = '100'
     }*/
+        onMounted(() => {
+            let root = getCurrentInstance()
+            console.log('这里是 this 详情 的结果-------------', root)
+        })
         return {
+            // abc,
             location,
             userGeolocation,
             updateLocation,
             location3,
             geolocation3,
+            add: attrs,
         }
+    },
+    beforeMount() {
+        // console.log('这里是  的结果-------------', '你这是恶意返乡')
+    },
+    mounted() {
+        // console.log('这里是 reactiveDetail mounted 的结果----123---------', 'reactiveDetail', getCurrentInstance())
     },
 }
 </script>

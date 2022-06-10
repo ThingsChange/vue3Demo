@@ -1,6 +1,5 @@
 <template>
-    <!--  <div id="teleportWrap" class="vue-next-wrapper">
-  </div>-->
+    <!--    <div ref="haha" id="teleportWrap" class="vue-next-wrapper"></div>-->
 
     <reactiveDetail :msg="'12'" :title="title" :location2="location" :geolocation="geolocation"></reactiveDetail>
     <div>
@@ -9,6 +8,7 @@
         <span>{{ shallowReadlyPerson.basic }}</span>
     </div>
     <button class="liti-button" @click="changePerson">修改用户信息</button>
+    <button class="liti-button" @click="updateLocation">修改位置</button>
 
     <div>{{ msg }}</div>
     <div>{{ msg2 }}</div>
@@ -151,7 +151,7 @@ export default defineComponent({
 
         onMounted(() => {
             let instance = getCurrentInstance()
-            console.log('这里是 instance 的结果-------------', instance)
+            console.log('这里是 instance  父节点 的结果-------------', instance)
         })
 
         let b = ref(12)
@@ -196,7 +196,10 @@ export default defineComponent({
         const title = '这里是详情组件'
 
         let grade = reactive(new Set([1, 2, 3, 4, 5]))
-        console.log('这里是   grade  ------------', grade)
+        let readonlyGrade = readonly(grade)
+        readonlyGrade.add(6)
+        // console.log('这里是 read 的结果-------------', readonlyGrade.has(6))
+        // console.log('这里是   grade  ------------', grade)
         return {
             person,
             shallowPerson,
@@ -212,6 +215,7 @@ export default defineComponent({
             readlyPerson,
             personStatusKaixin,
             grade,
+            updateLocation,
         }
     },
 })

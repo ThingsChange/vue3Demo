@@ -1,4 +1,4 @@
-const LayOut = () => import(/* webpackChunkName: "Layout" */ '@v/layout')
+const LayOut = () => import(/* webpackChunkName: "Layout" */ '@v/layout/index')
 const Animation = () => import(/* webpackChunkName: "Animation" */ '@v/cssStudy/animation')
 const Communicate = () => import(/* webpackChunkName: "Communicate" */ '@v/communicate/index')
 const Reactive = () => import(/* webpackChunkName: "reactive" */ '@v/vueNext/reactiveTest')

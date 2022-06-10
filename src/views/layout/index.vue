@@ -8,15 +8,9 @@
         </el-aside>
         <el-container class="layout-right">
             <el-header>
-                <button class="liti-button" @click="changeTheme">
-                    改变主题
-                </button>
-                <button class="liti-button" @click="changeLanguage">
-                    语言
-                </button>
-                <button class="liti-button" @click="addRouteAsync">
-                    增加路由
-                </button>
+                <button class="liti-button" @click="changeTheme">改变主题</button>
+                <button class="liti-button" @click="changeLanguage">语言</button>
+                <button class="liti-button" @click="addRouteAsync">增加路由</button>
             </el-header>
             <el-main>
                 <div id="teleportWrap" class="vue-next-wrapper"></div>
@@ -29,7 +23,7 @@
 
 <script>
 import menu from './menu.vue'
-import { defineComponent, PropType, getCurrentInstance, inject } from 'vue'
+import { defineComponent, PropType, getCurrentInstance, inject, onMounted } from 'vue'
 import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
 // import {ComponentInternalInstance, SetupContext} from "@vue/runtime-core";
 // import  Login from '@/views/login/index.vue'
@@ -51,16 +45,12 @@ export default {
     computed: {},
     methods: {
         changeTheme() {
-            const nowTheme =
-                window.document.documentElement.getAttribute('data-theme')
+            const nowTheme = window.document.documentElement.getAttribute('data-theme')
             const dataTheme = nowTheme === 'default' ? 'dark' : 'default'
             this.mcColor = nowTheme === 'default' ? 'red' : 'blue'
             // @ts-ignore
             this.LS.set('data-theme', dataTheme)
-            window.document.documentElement.setAttribute(
-                'data-theme',
-                dataTheme
-            )
+            window.document.documentElement.setAttribute('data-theme', dataTheme)
         },
         changeLanguage() {
             let context = this
@@ -79,7 +69,10 @@ export default {
     setup(props, context) {
         const $ss = inject('$ss')
         // console.log('这里是 $ss 1234 的结果-------------', $ss)
-        // console.log('这里是 context 的结果-------------', context)
+        console.log('这里是 context 的结果-------------', context)
+        onMounted(() => {
+            console.log('这里是 234 layout/index 的结果-------------', 234)
+        })
     },
     beforeRouteEnter(to, from, next) {
         next(context => {
@@ -93,8 +86,8 @@ export default {
         //  console.log('这里是 ctx 的结果-------------', ctx,this ,this.LS)
     },
     mounted() {
-        // let root = getCurrentInstance();
-        // console.log('这里是 this 1231241 的结果-------------', root)
+        let root = getCurrentInstance()
+        console.log('这里是 layout/index  的结果-------------', root)
     },
 }
 </script>
