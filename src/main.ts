@@ -4,9 +4,9 @@ import Food from '@/common/BabelOptimize.js'
 
 import SvgIcon from '@/components/SvgIcon.vue'
 import { createApp } from 'vue'
-import Element3 from 'element3'
+import ElementPlus from 'element-plus'
 import axios from 'axios'
-import 'element3/lib/theme-chalk/index.css'
+import 'element-plus/dist/index.css'
 import GlobalComponent from '@/components/index.ts'
 import './common/_import'
 // @ts-ignore
@@ -37,7 +37,7 @@ app.mixin({
     }*/
 })
 
-app.use(Element3)
+app.use(ElementPlus)
 //第二种给全局实例挂载方法
 app.use(i18n)
 // import "@/icons";

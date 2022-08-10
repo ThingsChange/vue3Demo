@@ -1,6 +1,7 @@
 <template>
     <el-row class="tac">
-        <el-menu
+        <el-col :span="24">
+            <!--        <el-menu
             @select="selectMenu"
             default-active="2"
             class="el-menu-vertical-demo"
@@ -14,7 +15,26 @@
                 <template v-slot:title>{{ item.text }}</template>
                 <el-menu-item v-for="(secondItem, index) in item.child" :index="secondItem.id" :key="index">{{ secondItem.text }}</el-menu-item>
             </el-submenu>
-        </el-menu>
+        </el-menu>-->
+            <el-menu
+                active-text-color="#ffd04b"
+                background-color="#545c64"
+                text-color="#fff"
+                default-active="2"
+                class="el-menu-vertical-demo"
+                @select="selectMenu"
+                @open="handleOpen"
+                @close="handleClose"
+            >
+                <el-sub-menu v-for="(item, index) in routeConfig" :index="item.id" :key="index">
+                    <template #title>
+                        <el-icon><location /></el-icon>
+                        <span>{{ item.text }}</span>
+                    </template>
+                    <el-menu-item v-for="(secondItem, index) in item.child" :index="secondItem.id" :key="index">{{ secondItem.text }}</el-menu-item>
+                </el-sub-menu>
+            </el-menu>
+        </el-col>
     </el-row>
 </template>
 
@@ -31,23 +51,14 @@ export default {
         }
     },
     methods: {
-        selectMenu(data) {
-            console.log('这里是   data  ------------', data)
-            let firstMenum = data.slice(0, data.indexOf('-'))
-            console.log('这里是   firstMenum  ------------', firstMenum)
+        selectMenu(...data) {
+            let { 0: firstMenum, 1: secondMenu } = data[1]
             let toUrl = ''
-            console.log(1234)
             this.routeConfig.filter(v => {
-                /*                console.log(
-                    '这里是   v.id===firstMenum  ------------',
-                    v.id == firstMenum,
-                    v.id,
-                    firstMenum
-                )*/
-                if (v.id == firstMenum) {
+                if (v.id === firstMenum) {
                     v.child.filter(x => {
                         // console.log('这里是   x.id  ------------', x.id) /**/
-                        if (x.id === data) {
+                        if (x.id === secondMenu) {
                             toUrl = x.path
                         }
                     })
@@ -89,9 +100,16 @@ export default {
 }
 </script>
 <style type="scss" lang="scss">
-.el-submenu__title {
+/*.el-submenu__title {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+}*/
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    min-height: 400px;
+}
+.is-opened {
+    background-color: red;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <!--    <div ref="haha" id="teleportWrap" class="vue-next-wrapper"></div>-->
+    <div ref="haha" id="teleportWrap" class="vue-next-wrapper"></div>
 
     <reactiveDetail :msg="'12'" :title="title" :location2="location" :geolocation="geolocation"></reactiveDetail>
     <div>

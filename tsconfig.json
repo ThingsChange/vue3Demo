@@ -5,21 +5,26 @@
     "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
+    "allowJs": true,
+    "noLib": false,
     "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "strictFunctionTypes": true,
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
       "webpack-env", "mocha", "chai"
     ],
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"],
+      "#/*": ["types/*"]
     },
     "lib": [
       "esnext",
@@ -33,7 +38,9 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx",
+    "types/**/*.d.ts",
+    "types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

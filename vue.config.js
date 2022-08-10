@@ -32,6 +32,7 @@ module.exports = {
             .set('@p', resolve('src/plugins'))
             .set('@v', resolve('src/views'))
             .set('@s', resolve('src/static'))
+            .set('#', resolve('types'))
         // console.log('这里是 config.resolve.alias 的结果-------------', config.resolve.alias)
         // config.resolve.extensions=['.js','.vue','.json'];
         const svgRule = config.module.rule('svg')
@@ -59,11 +60,7 @@ module.exports = {
                     // resources: './path/to/resources.scss',
 
                     // Or array of paths
-                    resources: [
-                        './src/assets/css/var-default.scss',
-                        './src/assets/css/var-dark.scss',
-                        './src/assets/css/common.scss',
-                    ],
+                    resources: ['./src/assets/css/var-default.scss', './src/assets/css/var-dark.scss', './src/assets/css/common.scss'],
                 })
                 .end()
         })
@@ -86,7 +83,19 @@ module.exports = {
             .use("ts-loader")
             .loader("ts-loader").options({ appendTsxSuffixTo: [/\.vue$/] })*/
     },
-    configureWebpack: () => {},
+    configureWebpack: config => {
+        return {
+            module: {
+                rules: [
+                    {
+                        test: /\.mjs$/,
+                        include: /node_modules/,
+                        type: 'javascript/auto',
+                    },
+                ],
+            },
+        }
+    },
     // css相关配置
     css: {
         // 是否使用css分离插件 ExtractTextPlugin
