@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, toRefs, onMounted } from 'vue'
+import { ref, reactive, toRefs, onMounted, toRef } from 'vue'
 
 let state = reactive({
     statusText: '好困',
@@ -39,7 +39,9 @@ onMounted(async () => {
     state.dataList = data
     console.log('这里是 子的dataList更新结束 的结果-------------', 1111111)
 })
-let { dataList, sonInfo } = toRefs(state)
+// let { dataList ,sonInfo} = toRefs(state)
+let { dataList } = toRefs(state)
+let sonInfo = toRef(state, 'sonInfo')
 // const a = 1
 let sayIt = function () {
     console.log('明日之星--------------', state.statusText)
@@ -47,8 +49,9 @@ let sayIt = function () {
 defineExpose({
     // ...toRefs(state),
     dataList: dataList,
-    // sonInfo: sonInfo,
-    sonInfo: state.sonInfo,
+    //此处用state.sonInfo在父组件中并不能获取到子组件的最新值，因为指针指向了新的对象,但是用从toRefs中解构出来的可以，是因为已经做了绑定。
+    sonInfo: sonInfo,
+    // sonInfo: state.sonInfo,
     sayIt,
 })
 </script>
