@@ -7,11 +7,7 @@
     <div>{{ imgList }}</div>
     <div>{{ state }} <button @click="changeState">改变左侧的</button></div>
     <h3>那么toRefs 有是什么？</h3>
-    <p>
-        toRef() 的一个问题是定义起来极其麻烦，一次只能转换一个
-        key，因此我们可以封装一个函数，直接把一个响应式对象的所有key都转成
-        ref，这就是 toRefs()
-    </p>
+    <p>toRef() 的一个问题是定义起来极其麻烦，一次只能转换一个 key，因此我们可以封装一个函数，直接把一个响应式对象的所有key都转成 ref，这就是 toRefs()</p>
 
     <div>{{ foodR2.count.value }}</div>
 </template>
@@ -21,7 +17,7 @@ import { toRef, toRefs, reactive, ref } from 'vue'
 import { effect } from '@vue/reactivity'
 
 export default {
-    name: 'toRef',
+    name: 'ToRef',
     setup() {
         let food = {
             id: '',
@@ -40,14 +36,8 @@ export default {
         let foodTemp = { unit: toRef(foodR, 'unit') }
         effect(() => {
             console.log('这里是 imgList.url 的结果-------------', imgList)
-            console.log(
-                '这里是 imgList.url 的结果-------------',
-                imgList.value.unit
-            )
-            console.log(
-                '这里是 foodTemp.img 的结果-------------',
-                foodTemp.unit.value
-            )
+            console.log('这里是 imgList.url 的结果-------------', imgList.value.unit)
+            console.log('这里是 foodTemp.img 的结果-------------', foodTemp.unit.value)
         })
         //这个是不会用数据的。
         foodR.img = ['1', '2', '3']
@@ -58,10 +48,7 @@ export default {
         // imgList.value.unit='盒'
         let foodR2 = toRefs(food)
         effect(() => {
-            console.log(
-                '这里是 foodR2.count 的结果-------------',
-                foodR2.count.value
-            )
+            console.log('这里是 foodR2.count 的结果-------------', foodR2.count.value)
         })
         console.log('这里是 foodR2 的结果-------------', foodR2)
         foodR.count = 2

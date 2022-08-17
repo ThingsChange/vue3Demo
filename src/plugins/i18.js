@@ -29,17 +29,11 @@ const install = function (app) {
                 if (lang == 'en') {
                     window.LS.set('locale', 'zh')
                     // this.$i18n.locale = localStorage.getItem('locale')
-                    this.$message({
-                        message: '切换为中文！',
-                        type: 'success',
-                    })
+                    this.$message.success('切换为中文! ')
                 } else if (lang == 'zh') {
                     window.LS.set('locale', 'en')
                     // this.$i18n.locale = localStorage.getItem('locale')
-                    this.$message({
-                        message: 'Switch to English!',
-                        type: 'success',
-                    })
+                    this.$message.success('Switch to English!')
                 }
                 // location.reload();
             },

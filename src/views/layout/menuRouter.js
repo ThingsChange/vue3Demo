@@ -10,7 +10,7 @@ import routes from '@/routes/routeList'
 const routesList = routes.reduce((routes, route) => {
     if (!route.meta?.id) return routes
     let config = {
-        id: route.meta.id,
+        id: route.meta.id + '',
         path: route.path,
         text: route.meta.text,
         child: [],

@@ -10,8 +10,9 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noImplicitAny": false,
+//    "noUnusedLocals": true,
+//    "noUnusedParameters": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "strictFunctionTypes": true,
@@ -19,9 +20,7 @@
     "forceConsistentCasingInFileNames": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": [
-      "webpack-env", "mocha", "chai"
-    ],
+    "types": [],
     "paths": {
       "@/*": ["src/*"],
       "#/*": ["types/*"]

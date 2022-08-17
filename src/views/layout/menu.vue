@@ -1,103 +1,97 @@
 <template>
-    <el-row class="tac">
-        <el-col :span="24">
-            <!--        <el-menu
-            @select="selectMenu"
-            default-active="2"
-            class="el-menu-vertical-demo"
-            @open="handleOpen"
-            @close="handleClose"
-            background-color="#545c64"
-            text-color="#fff"
-            active-text-color="#ffd04b"
-        >
-            <el-submenu v-for="(item, index) in routeConfig" :index="item.id" :key="index">
-                <template v-slot:title>{{ item.text }}</template>
-                <el-menu-item v-for="(secondItem, index) in item.child" :index="secondItem.id" :key="index">{{ secondItem.text }}</el-menu-item>
-            </el-submenu>
-        </el-menu>-->
-            <el-menu
-                active-text-color="#ffd04b"
-                background-color="#545c64"
-                text-color="#fff"
-                default-active="2"
-                class="el-menu-vertical-demo"
-                @select="selectMenu"
-                @open="handleOpen"
-                @close="handleClose"
-            >
-                <el-sub-menu v-for="(item, index) in routeConfig" :index="item.id" :key="index">
-                    <template #title>
-                        <el-icon><location /></el-icon>
-                        <span>{{ item.text }}</span>
-                    </template>
-                    <el-menu-item v-for="(secondItem, index) in item.child" :index="secondItem.id" :key="index">{{ secondItem.text }}</el-menu-item>
-                </el-sub-menu>
-            </el-menu>
-        </el-col>
-    </el-row>
+    <a-layout-sider v-model:collapsed="collapsed" collapsible>
+        <div class="logo">
+            <a-avatar size="large" :src="userPhoto" />
+        </div>
+        <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline" :open-keys="openKeys" @select="selectMenu" @openChange="onOpenChange">
+            <a-sub-menu v-for="firstRoute in routeConfig" :key="firstRoute.id">
+                <template #title>
+                    <span>
+                        <user-outlined />
+                        <span>{{ firstRoute.text }}</span>
+                    </span>
+                </template>
+                <a-menu-item v-for="secondRoute in firstRoute.child" :key="secondRoute.id">{{ secondRoute.text }}</a-menu-item>
+            </a-sub-menu>
+        </a-menu>
+    </a-layout-sider>
 </template>
 
-<script>
-import { ref, getCurrentInstance, inject } from 'vue'
+<script lang="ts">
+import { ref, defineComponent, getCurrentInstance, inject, reactive, toRefs } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { routeConfig as routeList } from '@/views/layout/menuRouter'
+import {
+    UserOutlined,
+    VideoCameraOutlined,
+    UploadOutlined,
+    MenuFoldOutlined,
+    MenuUnfoldOutlined,
+    PieChartOutlined,
+    DesktopOutlined,
+} from '@ant-design/icons-vue'
 
-export default {
-    name: 'menu',
+export default /* #__PURE__ */ defineComponent({
+    name: 'MenuSelf',
+    components: {
+        UserOutlined,
+        PieChartOutlined,
+        DesktopOutlined,
+        VideoCameraOutlined,
+        UploadOutlined,
+        MenuFoldOutlined,
+        MenuUnfoldOutlined,
+    },
+    setup(props, context) {
+        const $ss = inject('$ss')
+        // console.log('这里是 $ss 的结果-------------', $ss)
+        let defaultOpeneds = ref(['1', '1-4'])
+        let routeConfig = ref(routeList)
+        let root = getCurrentInstance()
+        let router = useRouter()
+        let route = useRoute()
+        const state = reactive({
+            openKeys: ['sub1'],
+            selectedKeys: [],
+            rootSubmenuKeys: routeList.map(v => v.id),
+        })
+        let selectedKeys = ref<string[]>(['1'])
+        let userPhoto = require('../../assets/images/老子不干了.jpg')
+
+        const onOpenChange = (openKeys: string[]) => {
+            const latestOpenKey = openKeys.find(key => state.openKeys.indexOf(key) === -1)
+            if (state.rootSubmenuKeys.indexOf(latestOpenKey!) === -1) {
+                state.openKeys = openKeys
+            } else {
+                state.openKeys = latestOpenKey ? [latestOpenKey] : []
+            }
+        }
+        return { defaultOpeneds, routeConfig, collapsed: ref<boolean>(false), ...toRefs(state), onOpenChange, userPhoto }
+    },
     data() {
         return {
             hehe: [1, 2, 3],
         }
     },
+    created() {},
     methods: {
-        selectMenu(...data) {
-            let { 0: firstMenum, 1: secondMenu } = data[1]
+        selectMenu({ item, key, selectedKeys }) {
+            let { 0: firstMenum, 1: secondMenu } = key.split('-')
             let toUrl = ''
             this.routeConfig.filter(v => {
                 if (v.id === firstMenum) {
                     v.child.filter(x => {
-                        // console.log('这里是   x.id  ------------', x.id) /**/
-                        if (x.id === secondMenu) {
+                        if (x.id === key) {
                             toUrl = x.path
                         }
                     })
                 }
             })
+            console.log('这里是   toUrl  ------------', toUrl)
             this.$router.push(toUrl)
         },
     },
-    created() {},
-    setup(props, context) {
-        const $ss = inject('$ss')
-        // console.log('这里是 $ss 的结果-------------', $ss)
-        let defaultOpeneds = ref(['1', '1-4'])
-        // console.log('这里是 props,context 的结果-------------', props, context)
-        //临时性死区你敢信他不报错？
-        // let routeConfig = ref(routeConfig)
-        let routeConfig = ref(routeList)
-        // console.log('这里是 routeConfig 的结果-------------', routeConfig)
-        let root = getCurrentInstance()
-        let router = useRouter()
-        let route = useRoute()
-        // console.log('这里是 root 的结果-------------', root, router, route)
-
-        function handleOpen(key, keyPath) {
-            // console.log('这里是 props,context 的结果-------------', props, context)
-            console.log(key, keyPath)
-        }
-
-        function handleClose(key, keyPath) {
-            console.log(key, keyPath)
-        }
-
-        function selectMenu(data) {
-            // console.log('这里是 props,context 的结果-------------', props, context)
-        }
-
-        return { defaultOpeneds, handleOpen, handleClose, routeConfig }
-    },
-}
+})
 </script>
 <style type="scss" lang="scss">
 /*.el-submenu__title {

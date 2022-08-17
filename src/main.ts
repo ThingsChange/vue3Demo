@@ -1,11 +1,12 @@
 // import './routes/class-component-hooks';
 // @ts-ignore
 import Food from '@/common/BabelOptimize.js'
-
+import Antd from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
 import SvgIcon from '@/components/SvgIcon.vue'
 import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
-import axios from 'axios'
+// import axios from 'axios'
 import 'element-plus/dist/index.css'
 import GlobalComponent from '@/components/index.ts'
 import './common/_import'
@@ -28,6 +29,7 @@ const myMixin = {
         }
     },
 }
+app.use(Antd)
 app.use(Storage)
 app.mixin({
     /*    methods: {
@@ -37,11 +39,12 @@ app.mixin({
     }*/
 })
 
-app.use(ElementPlus)
+window['haha'] = 1
+// app.use(ElementPlus)
 //第二种给全局实例挂载方法
 app.use(i18n)
 // import "@/icons";
 
 app.use(GlobalComponent)
-app.component('svg-icon', SvgIcon)
+app.component('SvgIcon', SvgIcon)
 app.use(router).mount('#app')

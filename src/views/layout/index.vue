@@ -1,168 +1,83 @@
 <template>
-    <el-container class="layout">
-        <el-aside width="200px" class="layout-left">
-            <el-avatar class="avatar-nb">
-                <img src="../../assets/images/老子不干了.jpg" alt="" />
-            </el-avatar>
-            <me-nu></me-nu>
-        </el-aside>
-        <el-container class="layout-right">
-            <el-header>
+    <a-layout style="min-height: 100vh">
+        <menu-self />
+        <a-layout>
+            <a-layout-header style="background: #fff; padding: 0">
                 <button class="liti-button" @click="changeTheme">改变主题</button>
                 <button class="liti-button" @click="changeLanguage">语言</button>
                 <button class="liti-button" @click="addRouteAsync">增加路由</button>
-            </el-header>
-            <el-main>
-                <div id="teleportWrap" class="vue-next-wrapper"></div>
-                <router-view />
-            </el-main>
-            <el-footer>Footer</el-footer>
-        </el-container>
-    </el-container>
+            </a-layout-header>
+            <a-layout-content style="margin: 0 16px">
+                <a-breadcrumb style="margin: 16px 0">
+                    <a-breadcrumb-item>User</a-breadcrumb-item>
+                    <a-breadcrumb-item>Bill</a-breadcrumb-item>
+                </a-breadcrumb>
+                <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
+                    <router-view />
+                </div>
+            </a-layout-content>
+            <a-layout-footer style="text-align: center"> Ant Design ©2018 Created by Ant UED </a-layout-footer>
+        </a-layout>
+    </a-layout>
 </template>
-
-<script>
-import menu from './menu.vue'
-import { defineComponent, PropType, getCurrentInstance, inject, onMounted } from 'vue'
-import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
-// import {ComponentInternalInstance, SetupContext} from "@vue/runtime-core";
-// import  Login from '@/views/login/index.vue'
+<script lang="ts">
+import { PieChartOutlined, DesktopOutlined, UserOutlined, TeamOutlined, FileOutlined } from '@ant-design/icons-vue'
+import MenuSelf from './menu.vue'
+import { defineComponent, getCurrentInstance, ref, ComponentInternalInstance } from 'vue'
 const _import = require('@/common/_import.js')
-
-export default {
-    name: 'Layout',
-    props: {
-        success: { type: String },
+export default defineComponent({
+    components: {
+        PieChartOutlined,
+        DesktopOutlined,
+        UserOutlined,
+        TeamOutlined,
+        FileOutlined,
+        MenuSelf,
     },
-    data() {
-        return {
-            mcColor: 'red',
-            active: 0,
-        }
-    },
-    components: { 'me-nu': menu },
-    // components: { menu },
-    computed: {},
-    methods: {
-        changeTheme() {
+    setup() {
+        function changeTheme() {
             const nowTheme = window.document.documentElement.getAttribute('data-theme')
             const dataTheme = nowTheme === 'default' ? 'dark' : 'default'
-            this.mcColor = nowTheme === 'default' ? 'red' : 'blue'
-            // @ts-ignore
-            this.LS.set('data-theme', dataTheme)
+            // this.mcColor = nowTheme === 'default' ? 'red' : 'blue'
+            // this.LS.set('data-theme', dataTheme)
             window.document.documentElement.setAttribute('data-theme', dataTheme)
-        },
-        changeLanguage() {
-            let context = this
-            context.$toggleLang()
-        },
-        addRouteAsync() {
+        }
+        const { proxy } = getCurrentInstance() as any
+        let changeLanguage = function () {
+            console.log('这里是   proxy  ------------', proxy)
+            // let context = this
+            // console.log('这里是   context  ------------', context)
+            proxy.$toggleLang()
+        }
+        function addRouteAsync() {
             let routeA = {
                 path: '/login',
                 component: _import('login/index.vue'),
                 name: 'Logina',
             }
-            // this.$router.addRoute(routeA)
-            // this.$router.push({name:'Logina'})
-        },
+            proxy.$router.addRoute(routeA)
+        }
+        return { changeTheme, changeLanguage, addRouteAsync }
     },
-    setup(props, context) {
-        const $ss = inject('$ss')
-        // console.log('这里是 $ss 1234 的结果-------------', $ss)
-        console.log('这里是 context 的结果-------------', context)
-        onMounted(() => {
-            console.log('这里是 234 layout/index 的结果-------------', 234)
-        })
+    data() {
+        return {
+            collapsed: ref<boolean>(false),
+            selectedKeys: ref<string[]>(['1']),
+        }
     },
-    beforeRouteEnter(to, from, next) {
-        next(context => {
-            // console.log('这里是 beforeRouteEnter 的结果-------------', context)
-        })
-    },
-    created() {
-        // this.changeTheme();
-        // let  {ctx}:any = getCurrentInstance();
-        // @ts-ignore
-        //  console.log('这里是 ctx 的结果-------------', ctx,this ,this.LS)
-    },
-    mounted() {
-        let root = getCurrentInstance()
-        console.log('这里是 layout/index  的结果-------------', root)
-    },
-}
+})
 </script>
-<style scoped lang="scss">
-.layout {
-    display: flex;
-    height: 100vh;
-    .layout-left {
-        background-color: rgb(84, 92, 100) !important;
-        & /deep/ .el-menu {
-            border-right: none;
-        }
-    }
-    .layout-right {
-        display: flex;
-        flex-flow: column;
-        flex: 1;
-        .el-header,
-        .el-footer {
-            background-color: #b3c0d1;
-            color: #333;
-            text-align: center;
-            line-height: 60px;
-            justify-content: space-between;
-        }
-        .el-main {
-            flex: 1;
-        }
-        .el-header {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-        }
-    }
-    .el-aside {
-        height: 100vh;
-        overflow: hidden;
-        background-color: #d3dce6;
-        color: #333;
-        text-align: center;
-        //line-height: 200px;
-    }
-    .avatar-nb {
-        margin-top: 1rem;
-        width: 6rem;
-        height: 6rem;
-    }
-}
-.layer-head {
-    height: 5rem;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 1rem;
+<style>
+#components-layout-demo-side .logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.3);
 }
 
-.layer-content {
-    display: flex;
-    flex: 1;
-    height: calc(100vh - 7rem);
-
-    .menu-left {
-        width: 8rem;
-        background: yellowgreen;
-    }
-
-    .layer-content-right {
-        flex: 1;
-        background: rgba(#42b983, 0.1);
-    }
+.site-layout .site-layout-background {
+    background: #fff;
 }
-
-.layer-foot {
-    height: 2rem;
-    display: flex;
-    justify-content: center;
-    font-size: 0.5rem;
+[data-theme='dark'] .site-layout .site-layout-background {
+    background: #141414;
 }
 </style>

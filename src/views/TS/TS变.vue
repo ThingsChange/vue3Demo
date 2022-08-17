@@ -124,10 +124,7 @@ export default {
         // let someThing = new Singleton();
 
         const instance = Singleton.getIntance()
-        console.log(
-            '这里是 instance 的结果-------------',
-            instance.someMethod()
-        )
+        console.log('这里是 instance 的结果-------------', instance.someMethod())
 
         return {}
     },

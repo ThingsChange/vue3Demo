@@ -15,6 +15,8 @@ const TS变 = () => import(/* webpackChunkName: "TSStudy" */ '@v/TS/TS变')
 const TSFanxing = () => import(/* webpackChunkName: "TSStudy" */ '@v/TS/TSFanxing')
 const cleanUP = () => import(/* webpackChunkName: "LifeCycle" */ '@v/vueNext/cleanUP')
 const watch相关 = () => import(/* webpackChunkName: "LifeCycle" */ '@v/vueNext/watch相关')
+const 哈哈 = () => import(/*webpackChunkName:"haha" */ '@v/vueNext/haha')
+const SelfException = () => import(/* webpackChunkName: "selfException"*/ '@/components/SelfException')
 
 // 404
 const NotFound = () => import(/* webpackChunkName: "NotFound" */ '@c/ErrorPage/NotFound')
@@ -101,6 +103,14 @@ const routes = [
                     text: 'watch相关',
                 },
             },
+            {
+                path: 'haha',
+                name: '哈哈',
+                component: 哈哈,
+                meta: {
+                    text: '哈哈还是那个哈哈',
+                },
+            },
         ],
     },
     {
@@ -117,6 +127,17 @@ const routes = [
                 component: Communicate,
                 meta: {
                     text: '组件之间的通信',
+                },
+            },
+            {
+                path: 'selfException',
+                name: 'SelfException',
+                component: SelfException,
+                meta: {
+                    text: '错误异常',
+                },
+                props: {
+                    title: '你爸爸还是你爸爸',
                 },
             },
         ],
