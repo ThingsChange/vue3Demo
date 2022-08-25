@@ -3,11 +3,7 @@
         <form>
             <input type="text" placeholder="id" v-model="state.food.id" />
             <input type="text" placeholder="单位" v-model="state.food.unit" />
-            <input
-                type="text"
-                placeholder="菜名"
-                v-model="state.food.foodName"
-            />
+            <input type="text" placeholder="菜名" v-model="state.food.foodName" />
             <input type="text" placeholder="价格" v-model="state.food.price" />
             <input type="text" placeholder="数量" v-model="state.food.count" />
             <button @click.prevent.stop="addFood">添加</button>
