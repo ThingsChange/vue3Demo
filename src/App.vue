@@ -9,8 +9,9 @@
 import { Options, Vue } from 'vue-class-component'
 // import { Component } from 'vue-property-decorator'
 // import HelloWorld from './components/HelloWorld.vue';
-import { reactive, toRefs, provide, useCssVars } from 'vue'
+import { reactive, toRefs, provide, useCssVars, ref, onMounted } from 'vue'
 import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
+import { readonly } from 'vue/dist/vue.esm-browser'
 // import {getStorage} from "@/plugins/storage";
 function getStorage() {}
 // or
@@ -19,13 +20,6 @@ function getStorage() {}
 export default {
     components: {
         // HelloWorld,
-    },
-    data() {
-        return {
-            a: false,
-            items: [1, 2, 3],
-            color: 'red',
-        }
     },
     setup() {
         useCssVars(_ctx => ({
@@ -37,8 +31,23 @@ export default {
           content: string;
           show: boolean;
         }*/
-        provide('$ss', getStorage(sessionStorage))
-        provide('$ls', getStorage(localStorage))
+        //使用readonly 子孙组件就无法修改该值了。
+        const status = ref('老子好困啊')
+        const authorStatus = readonly(status)
+        provide('author', {
+            status: authorStatus,
+            updateAuthorStatus(a) {
+                authorStatus.value = a
+            },
+        })
+        onMounted(() => {
+            console.log('这里是 app 的结果-------------', 111111111111)
+            setTimeout(() => {
+                status.value = '一打二也不是不可以'
+                console.log('这里是   authorStatus  ------------', authorStatus)
+            }, 3000)
+        })
+        // provide('$ls1', getStorage(localStorage))
         /*    const data = reactive({
           items: [{
             title: "css",
@@ -70,6 +79,13 @@ export default {
         return {
           ...toRefs(data)
         }*/
+    },
+    data() {
+        return {
+            a: false,
+            items: [1, 2, 3],
+            color: 'red',
+        }
     },
 }
 

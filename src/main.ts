@@ -9,6 +9,7 @@ import ElementPlus from 'element-plus'
 // import axios from 'axios'
 import 'element-plus/dist/index.css'
 import GlobalComponent from '@/components/index.ts'
+import globalRegister from '@/utils/globalRegister.js'
 import './common/_import'
 // @ts-ignore
 import i18n from '@/plugins/i18.js'
@@ -46,5 +47,6 @@ app.use(i18n)
 // import "@/icons";
 
 app.use(GlobalComponent)
+app.use(globalRegister)
 app.component('SvgIcon', SvgIcon)
 app.use(router).mount('#app')
