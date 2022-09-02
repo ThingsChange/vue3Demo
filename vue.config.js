@@ -24,7 +24,7 @@ module.exports = {
     chainWebpack: config => {
         config.plugins.delete('prefetch')
         config.resolve.alias
-            // .set("vue$", "vue/dist/vue.esm.js")
+            // .set('vue$', 'vue/dist/vue.esm-browse.js')
             .set('@', resolve('src'))
             .set('@a', resolve('src/assets'))
             .set('@scss', resolve('src/assets/scss'))

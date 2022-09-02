@@ -51,8 +51,7 @@ watchEffect(
         // parentState.heh = 2
         b.value = parentState.heh
         const el = document.querySelector('.postWatch')
-
-        console.log('这里是   el.innerText  -----watchEffect-----的post模式--', el.innerText)
+        // console.log('这里是   el.innerText  -----watchEffect-----的post模式--', el?.innerText)
     },
     { flush: 'post' }
 )
@@ -62,7 +61,7 @@ watchPostEffect(() => {
     const el = document.querySelector('.postWatch')
 
     console.log('这里是   el  ------------', el)
-    console.log('这里是   el.innerText  -----watchPostEffect-------', el.innerText)
+    // console.log('这里是   el.innerText  -----watchPostEffect-------', el.innerText)
 })
 
 const haChild = ref(null)

@@ -53,7 +53,18 @@ let sayIt = function () {
 const nightsWatch = ref('You know nothing, jone Snow')
 const name = ref()
 const surname = ref()
-const { food: foodFromParent, id } = defineProps(['food', 'id'])
+//多一步就好使，直接结构加重新命名并不好使
+// const sb = defineProps(['food', 'id'])
+// const { food: wocao, id } = sb
+//3.2.6这样写好使，可是升级到3.2.38不好使了，不能在解构的时候重新命名了
+let { food: foodExtra, id: hh } = defineProps(['food', 'id'])
+foodExtra = ref(123)
+// const wocao = 1
+console.log('这里是   foodFromParent  ------1111111111111111111111111------', foodExtra, hh)
+const kk = ref('1')
+const vFocus = {
+    mounted: el => el.focus(),
+}
 defineExpose({
     // ...toRefs(state),
     dataList: dataList,
@@ -73,18 +84,19 @@ defineExpose({
     <div v-for="item in dataList" :key="item.id">{{ item.content }}</div>
     <a-divider style="height: 2px; background-color: #7cb305" />
     <h2>这里是从父组件props过来的数据</h2>
-    <div>id:{{ id }}</div>
-    <div>{{ foodFromParent.foodName }}{{ foodFromParent.foodID }}</div>
-    <a-divider>嘿嘿我要試試</a-divider>
-    <User-name v-model.capitalize="nightsWatch" v-model:surname="surname" v-model:name.reverse="name" />
-    <div>守望者是：{{ surname }}{{ name }},誓言：{{ nightsWatch }}</div>
-    <a-divider />
-    <div>
-        <MouseTracker>
-            <template #default="{ x, y }"> Mouse is at {{ x }},{{ y }} </template>
-        </MouseTracker>
-    </div>
-    <a-divider>{{ author.status }}</a-divider>
+    <div>id:{{}}{{ hh }}</div>
+    <div>{{ foodExtra }}</div>
+    <!-- <a-divider>嘿嘿我要試試</a-divider>
+  <User-name v-model.capitalize="nightsWatch" v-model:surname="surname" v-model:name.reverse="name" />
+  <div>守望者是：{{ surname }}{{ name }},誓言：{{ nightsWatch }}</div>
+  <a-divider />
+  &lt;!&ndash;    <div>
+      <MouseTracker>
+          <template #default="{ x, y }">当前鼠标位置在 {{ x }},{{ y }} </template>
+      </MouseTracker>
+  </div>&ndash;&gt;
+  <a-divider>{{ author.status }}</a-divider>-->
+    <!--    <input v-focus v-model="kk" placeholder="哎哟哟，我会自动focus" />-->
 </template>
 
 <style scoped></style>

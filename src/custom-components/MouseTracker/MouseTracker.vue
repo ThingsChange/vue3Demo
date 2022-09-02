@@ -10,7 +10,10 @@ export default {
 }
 </script>
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
+import { useMouse } from './mouse'
+
+const { x, y } = useMouse()
+/*import { onMounted, onUnmounted, ref } from 'vue'
 const x = ref(0)
 const y = ref(0)
 const update = e => {
@@ -18,7 +21,7 @@ const update = e => {
     y.value = e.pageY
 }
 onMounted(() => window.addEventListener('mousemove', update))
-onUnmounted(() => window.removeEventListener('mousemove', update))
+onUnmounted(() => window.removeEventListener('mousemove', update))*/
 </script>
 
 <style scoped></style>

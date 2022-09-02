@@ -1,7 +1,7 @@
 <template>
     <div ref="haha" id="teleportWrap" class="vue-next-wrapper"></div>
 
-    <reactiveDetail :msg="'12'" :title="title" :location2="location" :geolocation="geolocation"></reactiveDetail>
+    <reactiveDetail :msg="'12'" :title="title" :location2="location" :geolocation="geolocation" />
     <div>
         <span>{{ shallowPerson.status }}</span>
         <span>{{ shallowPerson.basic }}</span>
@@ -20,7 +20,7 @@
     <button class="liti-button" @click="addA">数组填充新数字</button>
     <div>{{ sum }}</div>
     <ndy-hehe>123</ndy-hehe>
-    <reactiveDetail :msg="'12'" :title="title" :location2="location" :geolocation="geolocation"></reactiveDetail>
+    <reactiveDetail :msg="'12'" :title="title" :location2="location" :geolocation="geolocation" />
     <button class="liti-button" @click="addAsyncComponent">动态组件</button>
     <button class="liti-button" @click="toDetail">reactive详情</button>
     <button class="liti-button" @click="changeStatus">切换状态</button>
@@ -36,7 +36,7 @@
         <span>计算属性 人的状态</span><span>{{ personStatusKaixin }}</span>
     </div>
     <div>
-        <async-com :person="person" v-if="showAsync"></async-com>
+        <async-com :person="person" v-if="showAsync" v-model="showAsync" @wocao="wocao" />
     </div>
     <div>
         <p v-for="(g, index) in grade" :key="index">{{ g }}年级</p>
@@ -94,16 +94,23 @@ export default defineComponent({
                 ),
         }),
         //标准写法
-        /*
-        'async-com': defineAsyncComponent({
-            delay: 1000,
+        /*        'async-com': defineAsyncComponent({
+            delay: 2000,
             timeout: 3000,
             loadingComponent: LoadingAnimate,
             loader: () => import('./../../components/HelloWorld.vue'),
-        }),
-*/
+        }),*/
+    },
+    computed: {
+        sum() {
+            return this.nums.reduce((vv, v) => vv + v)
+        },
     },
     methods: {
+        wocao() {
+            console.log('这里是 2 的结果-------------', 2)
+            this.showAsync = false
+        },
         addA() {
             this.nums.push(this.nums[this.nums.length - 1] + 1)
             console.log('这里是 this.sum 的结果-------------', this.sum, this)
@@ -114,11 +121,6 @@ export default defineComponent({
         },
         toDetail() {
             this.$router.push({ name: 'ReactiveDetail', params: { id: 1 } })
-        },
-    },
-    computed: {
-        sum() {
-            return this.nums.reduce((vv, v) => vv + v)
         },
     },
     setup() {

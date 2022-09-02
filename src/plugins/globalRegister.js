@@ -6,7 +6,8 @@
  **/
 import { App } from 'vue'
 
-const install = function (app) {
+const install = function (app, options) {
+    console.log('这里是 options 的结果-------------', options)
     register(require.context('@/custom-components', true, /.vue/))
     function register(context) {
         console.log('这里是   context  ------------', context)
@@ -19,4 +20,6 @@ const install = function (app) {
         })
     }
 }
-export default install
+export default {
+    install,
+}

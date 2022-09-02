@@ -1,43 +1,46 @@
 <template>
-    <div class="hello">
-        这不扯犊子呢{{ statusChild }}
-        <button @click="gaiZhuangtai">反向修改</button>
-        <svg-icon icon-class="dun" className="icon-vip_card"></svg-icon>
-    </div>
+    <CoverBest content-display>
+        <template #content>
+            <div class="hello">
+                这不扯犊子呢{{ statusChild }}
+                <button @click="gaiZhuangtai">反向修改</button>
+                <svg-icon icon-class="dun" className="icon-vip_card" />
+                <button @click="closeWin">关闭自己</button>
+            </div>
+        </template>
+    </CoverBest>
 </template>
 
-<script>
+<script setup>
 // import { Options, Vue } from 'vue-class-component';
-import { defineComponent, toRef } from 'vue'
-
-export default defineComponent({
-    props: {
-        msg: String,
-        person: Object,
-    },
-    data() {
-        return {}
-    },
-    mounted() {
-        console.log('这里是 扯犊子 的结果-------------', 123)
-    },
-    setup(props, content) {
-        console.log('这里是 props,content 的结果-------------', props, content)
-        let statusChild = toRef(props, 'person')
-        let gaiZhuangtai = function () {
-            statusChild.value.status = '13bSurround'
-            statusChild.value.basic.name = '来自于子的名字'
-        }
-        return {
-            statusChild,
-            gaiZhuangtai,
-        }
-    },
+import { defineComponent, toRef, reactive } from 'vue'
+import CoverBest from '@/custom-components/cover/best'
+const emit = defineEmits(['update:modelValue', 'input'])
+const props = defineProps({
+    msg: String,
+    person: Object,
+    showAsync: Boolean,
 })
+const { msg, person, showAsync } = props
+let statusChild = toRef(props, 'person')
+let gaiZhuangtai = function () {
+    statusChild.value.status = '13bSurround'
+    statusChild.value.basic.name = '来自于子的名字'
+}
+// const emit = defineEmits(['input'])
+const closeWin = function () {
+    console.log('这里是 1234 的结果-------------', 1234)
+    emit('update:modelValue', false)
+    // emit('input', false)
+}
+const showAsyncComponent = reactive()
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.hello {
+    color: #cccccc;
+}
 h3 {
     margin: 40px 0 0;
 }
