@@ -21,7 +21,8 @@ const install = function (app) {
             if (o) return o[i]
         }, messages[window.LS.get('locale') || 'zh'])
     }
-    app.config.isCustomElement = tag => tag.startsWith('ndy-')
+    app.config.globalProperties.nidayeName = '晴云'
+    app.config.compilerOptions.isCustomElement = tag => tag.startsWith('ndy-')
     app.mixin({
         methods: {
             $toggleLang: function toggleLang() {

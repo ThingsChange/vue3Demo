@@ -10,13 +10,19 @@
         {{ childDataList }}
     </div>
     <div>父组件结束</div>
+    <button @click="changeFoodName">更12改父传递给子的props</button>
+    111111111111111111111111111111111111111111111111111 {{ fullName }}
     <haha_child ref="haChild" :food="food" v-bind="expandAuto" />
-    <button @click="changeFoodName">更改父传递给子的props</button>
 </template>
 
 <script setup>
 import { ref, reactive, toRefs, getCurrentInstance, onMounted, watch, watchEffect, watchPostEffect } from 'vue'
 import haha_child from './haha_child'
+import useAuthUserStore from '@/stores/useAuthUserStore'
+const authUserStore = useAuthUserStore()
+import { storeToRefs } from 'pinia'
+
+const { fullName } = storeToRefs(authUserStore)
 
 const food = ref({
     foodName: '酸汤肥牛',
@@ -28,6 +34,7 @@ const expandAuto = ref({
 })
 const changeFoodName = () => {
     food.value.foodName += food.value.foodID++
+    expandAuto.value.id++
 }
 
 let parentState = reactive({
@@ -51,7 +58,7 @@ watchEffect(
         // parentState.heh = 2
         b.value = parentState.heh
         const el = document.querySelector('.postWatch')
-        // console.log('这里是   el.innerText  -----watchEffect-----的post模式--', el?.innerText)
+        console.log('这里是   el.innerText  -----watchEffect-----的post模式--', el?.innerText)
     },
     { flush: 'post' }
 )
@@ -74,7 +81,6 @@ let sayIt = function () {
 let a = toRefs(parentState)
 let childDataList = reactive({ fatherList: [], info: {} })
 onMounted(() => {
-    console.log('这里是 父挂载 的结果-------------', 1)
     console.log('这里是   hahaChild  ------123------', haChild.value.dataList)
     childDataList.fatherList = haChild.value.dataList
     childDataList.info = haChild.value.sonInfo

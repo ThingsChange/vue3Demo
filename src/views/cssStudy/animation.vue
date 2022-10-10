@@ -2,15 +2,16 @@
     <div class="bc">
         <div class="moon"></div>
     </div>
-    <div>
-        {{ $t('cssStudy.style') }}
-    </div>
+    <div>{{ nidayeName }}的{{ $t('cssStudy.style') }}</div>
 </template>
 
-<script>
-export default {
-    name: 'animation',
-}
+<script setup>
+import { getCurrentInstance, onMounted } from 'vue'
+let proxy = getCurrentInstance()
+
+onMounted(() => {
+    console.log('这里是 this.nidayeName 的结果-------------', this, proxy.proxy.nidayeName)
+})
 </script>
 
 <style scoped>
@@ -26,14 +27,14 @@ export default {
     height: 5em;
     color: lightyellow;
     border-radius: 50%;
-    /* background: red; */
+    /*background: red;*/
     box-shadow: inset 5em 0 0;
     /**/
-    animation: move1 10s linear infinite alternate;
+    animation: move1 5s linear infinite alternate;
 }
 @keyframes move1 {
     to {
-        box-shadow: inset 0 0 0;
+        box-shadow: inset 0.5em 0 0;
     }
 }
 </style>

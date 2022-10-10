@@ -6,6 +6,9 @@
                 <button class="liti-button" @click="changeTheme">改变主题</button>
                 <button class="liti-button" @click="changeLanguage">语言</button>
                 <button class="liti-button" @click="addRouteAsync">增加路由</button>
+                <button class="liti-button">{{ fullName }}</button>
+                <button class="liti-button">{{ authUserStore.fullName }}</button>
+                <button class="liti-button">{{ fullNameMinus }}</button>
             </a-layout-header>
             <a-layout-content style="margin: 0 16px">
                 <a-breadcrumb style="margin: 16px 0">
@@ -23,7 +26,10 @@
 <script lang="ts">
 import { PieChartOutlined, DesktopOutlined, UserOutlined, TeamOutlined, FileOutlined } from '@ant-design/icons-vue'
 import MenuSelf from './menu.vue'
-import { defineComponent, getCurrentInstance, ref, ComponentInternalInstance } from 'vue'
+import { defineComponent, computed, getCurrentInstance, ref, ComponentInternalInstance, watchEffect } from 'vue'
+import { storeToRefs } from 'pinia'
+
+import useAuthUserStore from '@/stores/useAuthUserStore'
 const _import = require('@/common/_import.js')
 export default defineComponent({
     components: {
@@ -57,7 +63,18 @@ export default defineComponent({
             }
             proxy.$router.addRoute(routeA)
         }
-        return { changeTheme, changeLanguage, addRouteAsync }
+        const authUserStore = useAuthUserStore()
+        //此处为什么fullName 直接结构出来并没有响应性呢 ？因为你返回的是一个非响应性的值啊，他只是一个普通值
+        //需要外界对他添加响应性行为，比如，computed包裹一下，watchEffect包裹一下，或者模板中直接引用（这个是因为他的render函数是具有响应性的）
+        // const fullName = authUserStore.fullName
+        // const fullName = computed(() => authUserStore.fullName)
+        const { fullName } = storeToRefs(authUserStore)
+        let fullNameMinus = computed(() => authUserStore.fullName + 1)
+        watchEffect(() => {
+            // console.log('这里是   authUserStore.fullName  ------00000000000000000000000000------', authUserStore.fullName)
+        })
+        // console.log('这里是   fullName  ----1--------', authUserStore.fullName)
+        return { changeTheme, changeLanguage, addRouteAsync, fullName, authUserStore, fullNameMinus }
     },
     data() {
         return {

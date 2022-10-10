@@ -1,5 +1,5 @@
 <template>
-    <CoverBest content-display>
+    <CoverBest content-display disable-teleport>
         <template #content>
             <div class="hello">
                 这不扯犊子呢{{ statusChild }}

@@ -1,22 +1,24 @@
 <template>
-    <div
-        @click="shadowClose ? closeChildWin() : ''"
-        :style="{ zIndex: zIndex }"
-        :class="['cover', contentDisplay ? 'content-center' : '', needGlass ? 'glass' : '']"
-        @touchmove.prevent="toucuMoveEvent"
-    >
-        <section @click.stop :class="['inner', { isHidden: isHidden }]">
-            <div @click="closeChildWin" v-if="closeBtn" class="info-name_close model-close">
-                <!--                <SvgIcon color="#999" height="0.33" name="menuDetailClose" width="0.33" />-->
-            </div>
-            <slot name="content"></slot>
-        </section>
-        <p class="close_wrap" v-if="bottomClose" @click.stop="closeChildWin">
-            <span class="btn">
-                <SvgIcon class="close" color="#fff" height="0.32" name="close" width="0.32" />
-            </span>
-        </p>
-    </div>
+    <teleport to="body" :disabled="disableTeleport">
+        <div
+            @click="shadowClose ? closeChildWin() : ''"
+            :style="{ zIndex: zIndex }"
+            :class="['cover', contentDisplay ? 'content-center' : '', needGlass ? 'glass' : '']"
+            @touchmove.prevent="toucuMoveEvent"
+        >
+            <section @click.stop :class="['inner', { isHidden: isHidden }]">
+                <div @click="closeChildWin" v-if="closeBtn" class="info-name_close model-close">
+                    <!--                <SvgIcon color="#999" height="0.33" name="menuDetailClose" width="0.33" />-->
+                </div>
+                <slot name="content"></slot>
+            </section>
+            <p class="close_wrap" v-if="bottomClose" @click.stop="closeChildWin">
+                <span class="btn">
+                    <SvgIcon class="close" color="#fff" height="0.32" name="close" width="0.32" />
+                </span>
+            </p>
+        </div>
+    </teleport>
 </template>
 
 <script>
@@ -40,9 +42,10 @@ export default {
         needGlass: { type: [Boolean, Number], default: false },
         // 弹窗闭合条件据此组件层级深度，如果在页面直接引入，传入1，避免关闭事件错误赋值
         level: { type: Number, default: 2 },
-        zIndex: { type: Number, default: 999 },
+        zIndex: { type: [Number, String], default: 'auto' },
         // 是否禁止隐藏
         isHidden: { type: Boolean, default: false },
+        disableTeleport: { type: [Boolean, Number], default: false },
     },
     methods: {
         closeChildWin() {

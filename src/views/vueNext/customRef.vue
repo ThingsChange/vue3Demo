@@ -18,8 +18,8 @@
  * 它需要一个工厂函数，该函数接收 track 和 trigger 函数作为参数，并应返回一个带有 get 和 set 的对象。
  * */
 import debounceRef from '@/helper/diyRef/debounceRef'
-import { customRef, reactive, ref } from '@vue/reactivity'
-import { Ref, unref, watchEffect } from 'vue'
+// import { customRef, reactive, ref } from 'vue'
+import { ref, reactive, customRef, toRefs, unref, watchEffect } from 'vue'
 
 let myRef = function (value) {
     return customRef((track, trigger) => {
@@ -61,7 +61,7 @@ export default {
     //async setup 是错的
     setup() {
         // let dotaList = ref([])
-        let dotaList: Ref = myRef('/mock/dota')
+        let dotaList = myRef('/mock/dota')
         console.log('这里是 dotaList 的结果-----setup--------', dotaList)
         watchEffect(() => {
             console.log('这里是   dotaList  ------------', unref(dotaList))

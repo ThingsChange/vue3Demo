@@ -18,8 +18,10 @@ import Storage from '@/plugins/storage.js'
 import App from './App.vue'
 // @ts-ignore
 import router from './routes/index'
+import { steupPinia } from '@/stores/index'
 // @ts-ignore
 const app = createApp(App)
+app.use(steupPinia)
 const varWidth = 100
 //第一种给全局实例挂载方法
 const myMixin = {

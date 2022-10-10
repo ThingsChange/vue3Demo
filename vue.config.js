@@ -7,7 +7,7 @@ const IS_PROD = ['production', 'prod'].includes(process.env['NODE_ENV '])
 var colors = require('colors')
 
 console.log('读取当前git版本信息'.green)
-console.log('这里是   colors  ------------', colors.yellow)
+console.log('这里是   colors  -----远-------', colors.yellow)
 
 module.exports = {
     // 基本路径
