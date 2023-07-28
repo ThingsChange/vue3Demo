@@ -24,6 +24,7 @@
     <button class="liti-button" @click="addAsyncComponent">动态组件</button>
     <button class="liti-button" @click="toDetail">reactive详情</button>
     <button class="liti-button" @click="changeStatus">切换状态</button>
+    <button class="liti-button" @click="hehe">点击呵呵</button>
     <button class="liti-button" @click="testReadOnly">测试readOnly</button>
     <div>
         姓名：{{ person.basic.name }} 当前状态：{{ person.status }} ref B的：{{ b }}
@@ -40,6 +41,10 @@
     </div>
     <div>
         <p v-for="(g, index) in grade" :key="index">{{ g }}年级</p>
+        <div v-if="abc.length">
+            <p class="hehe" v-for="(g, index) in abc" :key="index">{{ g }}年级</p>
+        </div>
+        <div v-else>呵呵无值</div>
     </div>
 </template>
 <script>
@@ -78,6 +83,7 @@ export default defineComponent({
             nums: [1],
             msg2: 3122,
             showAsync: false,
+            abc: [],
         }
     },
     components: {
@@ -107,6 +113,10 @@ export default defineComponent({
         },
     },
     methods: {
+        hehe() {
+            this.abc = [1, 2, 3, 4]
+            console.log('这里是   this.abc  ------------', this.abc)
+        },
         wocao() {
             console.log('这里是 2 的结果-------------', 2)
             this.showAsync = false

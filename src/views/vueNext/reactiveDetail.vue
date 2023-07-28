@@ -16,6 +16,7 @@
   </div>-->
     <!--  <div>{{$route}}</div>-->
     <teleport class="scope-class" to="#teleportWrap">
+        <div>123456</div>
         <div class="a111">
             {{ location }}
             {{ userGeolocation }}
@@ -37,11 +38,6 @@
 import { inject, toRefs, toRef, getCurrentInstance, onMounted } from 'vue'
 
 export default {
-    methods: {
-        refresh() {
-            window.location.reload()
-        },
-    },
     setup(props, { attrs }) {
         // console.log('这里是   props  ------------', props)
         // console.log('这里是   props,context  ------------', props, context)
@@ -86,6 +82,11 @@ export default {
     },
     mounted() {
         // console.log('这里是 reactiveDetail mounted 的结果----123---------', 'reactiveDetail', getCurrentInstance())
+    },
+    methods: {
+        refresh() {
+            window.location.reload()
+        },
     },
 }
 </script>

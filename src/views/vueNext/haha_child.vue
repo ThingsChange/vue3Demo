@@ -81,7 +81,17 @@ const nightsWatch = ref('You know nothing, jone Snow')
 const name = ref()
 const surname = ref()
 //多一步就好使，直接结构加重新命名并不好使
-const sb = defineProps(['food', 'id'])
+// const sb = defineProps(['food', 'id'])
+const sb = defineProps({
+    food: {
+        default: () => ({ name: '酸辣土豆丝', id: '123' }),
+        type: Object,
+    },
+})
+const emits = defineEmits(['changeFoodName'])
+const changeFoodName = () => {
+    emits('changeFoodName', { from: 'child' })
+}
 const { food: foodExtra, id: hh } = toRefs(sb)
 // const { food: foodExtra, id: hh } = defineProps(['food', 'id'])
 //3.2.6这样写好使，可是升级到3.2.38不好使了，不能在解构的时候重新命名了
@@ -130,6 +140,7 @@ defineExpose({
     <div>姓：{{ user }}</div>
     <div>完整对象:{{ userObj }}</div>
     <button @click="changeUser">换名</button>
+    <button @click="changeFoodName">子组件换菜名</button>
     <a-divider style="height: 3px; background-color: yellowgreen" />
     <div v-pre>{{ 这个东西很不错 }}</div>
 </template>

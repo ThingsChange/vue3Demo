@@ -12,12 +12,12 @@
     <div>父组件结束</div>
     <button @click="changeFoodName">更12改父传递给子的props</button>
     111111111111111111111111111111111111111111111111111 {{ fullName }}
-    <haha_child ref="haChild" :food="food" v-bind="expandAuto" />
+    <HahaChild ref="haChild" v-bind="expandAuto" @changeFoodName="changeFoodName" />
 </template>
 
 <script setup>
 import { ref, reactive, toRefs, getCurrentInstance, onMounted, watch, watchEffect, watchPostEffect } from 'vue'
-import haha_child from './haha_child'
+import HahaChild from './haha_child'
 import useAuthUserStore from '@/stores/useAuthUserStore'
 const authUserStore = useAuthUserStore()
 import { storeToRefs } from 'pinia'
@@ -32,8 +32,10 @@ const expandAuto = ref({
     id: '001',
     title: '子',
 })
-const changeFoodName = () => {
-    food.value.foodName += food.value.foodID++
+const changeFoodName = obj => {
+    console.log('这里是 obj 的结果-------------', obj)
+    food.value.foodID = Math.floor(Math.random() * 100 + 1)
+    food.value.foodName = food.value.foodName.slice(0, 4) + food.value.foodID
     expandAuto.value.id++
 }
 
