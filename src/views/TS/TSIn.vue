@@ -20,6 +20,7 @@
         <button @click="conSo">输出语句，无返回的函数</button>
         <div>我是枚举类型{{ errorT }}</div>
         <div>我是wlj2的提交</div>
+        <div>我是wlj分支的提交</div>
     </section>
 </template>
 
